@@ -1,6 +1,7 @@
 #include "cMovingGraphObj.h"
 #include <cmath>
 
+#define PI 3.14159265
 
 cMovingGraphObj::cMovingGraphObj(char* szName, int iSpeedInput):cGraphObj(szName)
 {
@@ -31,7 +32,7 @@ cMovingGraphObj::cMovingGraphObj(char* szName, int iSpeedInput, int x, int y, in
 	xSpeed = round((iSpeed * w) / dist);
 	ySpeed = round((iSpeed * h) / dist);
 	double cos = abs(h) / sqrt(w*w + h*h);
-	angle = acos(cos);
+	angle = acos(cos) * 180.0 / PI;
 }
 
 cMovingGraphObj::~cMovingGraphObj()
@@ -58,7 +59,7 @@ SDL_Point cMovingGraphObj::setDest(int x, int y)
 	xSpeed = round((iSpeed * w) / dist);
 	ySpeed = round((iSpeed * h) / dist);
 	double cos = abs(h) / sqrt(w*w + h*h);
-	angle = acos(cos);
+	angle = acos(cos) * 180.0 / PI;
 	return dest;
 }
 

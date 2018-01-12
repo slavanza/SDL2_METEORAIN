@@ -14,7 +14,7 @@ public:
 	cObjList();
 	~cObjList();
 	void add(cGraphObj);
-	void remove(/* входным параметром будет некоторое данное, при совпадении с одним из полей, объект будет удаляться из списка */);
+	void remove(int x);
 	void show(SDL_Renderer*);
 };
 

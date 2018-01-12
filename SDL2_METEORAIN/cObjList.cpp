@@ -32,16 +32,14 @@ void cObjList::add(cGraphObj input)
 		lpFront = new cObjPage(input);
 }
 
-#define HORIZON 540
-
-void cObjList::remove()
+void cObjList::remove(int x)
 {
 	if (lpFront)
 	{
 		cObjPage* temp = lpFront;
 		while (temp->lpNext)
 		{
-			if(temp->data.getRect().y > HORIZON)
+			if ((temp->data.getRect().x < x) && ((temp->data.getRect().x + temp->data.getRect().w) > x))
 			{
 				cObjPage* _temp = lpFront;
 				while (_temp->lpNext != temp)

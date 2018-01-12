@@ -11,6 +11,7 @@ protected:
 public:
 	cGraphObj(char*);
 	cGraphObj(char*, int, int);
+	cGraphObj(const cGraphObj&);
 	~cGraphObj();
 	SDL_Rect setPos(int, int);
 	SDL_Rect setSize(int, int);

@@ -31,18 +31,21 @@ int cGame::getHealth()
 
 bool cGame::heal()
 {
-	if (iHealth < 100)
-		iHealth += iHealth / 100;
+	iHealth += iHealth / 100;
+	if (iDamage > (iHealth / 100))
+		iDamage -= iHealth / 100;
 	else
+	{
+		iDamage = 0;
 		return false;
+	}
 	return true;
 }
 
 bool cGame::dealDamage(int iDamageIncome)
 {
 	iDamage += iDamageIncome;
-	iHealth -= iDamageIncome;
-	if (iHealth > 0)
+	if (iHealth > iDamage)
 		return true;
 	else
 		return false;

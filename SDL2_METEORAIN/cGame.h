@@ -4,11 +4,11 @@
 
 class cGame
 {
-	int iScore;
-	int iHealth;
-	int iDamage;
+	int iScore; // очки
+	int iHealth; // уровень здоровья
+	int iDamage; // количество урона
 private:
-	cTimer timer;
+	cTimer timer; // таймер
 public:
 	cGame();
 	~cGame();

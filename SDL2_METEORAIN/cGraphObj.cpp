@@ -19,6 +19,12 @@ cGraphObj::cGraphObj(char* szName, int x, int y)
 	rect.h = lpSurface->h;
 }
 
+cGraphObj::cGraphObj(const cGraphObj& copy)
+{
+	lpSurface = SDL_CreateRGBSurface(0, copy.lpSurface->w, copy.lpSurface->h, copy.lpSurface->format->BitsPerPixel, copy.lpSurface->format->Rmask, copy.lpSurface->format->Gmask, copy.lpSurface->format->Bmask, copy.lpSurface->format->Amask);
+	SDL_BlitSurface(copy.lpSurface, NULL, lpSurface, NULL);
+}
+
 cGraphObj::~cGraphObj()
 {
 	SDL_FreeSurface(lpSurface);

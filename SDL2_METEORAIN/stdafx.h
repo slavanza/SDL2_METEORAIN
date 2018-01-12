@@ -2,3 +2,4 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <SDL.h>

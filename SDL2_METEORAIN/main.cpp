@@ -2,6 +2,9 @@
 
 #undef main
 
+#define WIDTH 640
+#define HEIGHT 480
+
 bool bSDL_Init = false;
 bool bTTF_Init = false;
 
@@ -13,7 +16,19 @@ int main(int argc, char** argv)
 	std::cout << "Application started" << std::endl;
 	InitAll();
 	atexit(QuitAll);
+
+	SDL_Window* mainWnd = nullptr;
+	SDL_Renderer* mainRnd = nullptr;
+
+	if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, SDL_WINDOW_SHOWN, &mainWnd, &mainRnd) < 0)
+	{
+		std::cout << "Window/Renderer creating error" << std::endl;
+		return -3;
+	}
+
 	system("pause");
+	SDL_DestroyRenderer(mainRnd);
+	SDL_DestroyWindow(mainWnd);
 	std::cout << "Applicaion ended" << std::endl;
 	return 0;
 }

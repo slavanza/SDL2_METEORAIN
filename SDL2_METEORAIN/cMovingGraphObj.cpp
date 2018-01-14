@@ -35,6 +35,15 @@ cMovingGraphObj::cMovingGraphObj(char* szName, int iSpeedInput, int x, int y, in
 	angle = acos(cos) * 180.0 / PI;
 }
 
+cMovingGraphObj::cMovingGraphObj(const cMovingGraphObj& copy) : cGraphObj((cGraphObj)copy)
+{
+	iSpeed = copy.iSpeed;
+	xSpeed = copy.xSpeed; 
+	ySpeed = copy.ySpeed;
+	angle = copy.angle;
+	dest = copy.dest;
+}
+
 cMovingGraphObj::~cMovingGraphObj()
 {
 }
@@ -108,4 +117,16 @@ void cMovingGraphObj::paint(SDL_Renderer* lpRenderer)
 	center.y = rect.h / 2;
 	SDL_RenderCopyEx(lpRenderer, lpTexture, NULL, &rect, angle, &center, SDL_FLIP_NONE);
 	SDL_DestroyTexture(lpTexture);
+}
+
+cMovingGraphObj cMovingGraphObj::operator=(const cMovingGraphObj& copy)
+{
+	cGraphObj* lpThis = (cGraphObj*)this;
+	*lpThis = (cGraphObj)copy;
+	iSpeed = copy.iSpeed;
+	xSpeed = copy.xSpeed;
+	ySpeed = copy.ySpeed;
+	angle = copy.angle;
+	dest = copy.dest;
+	return *this;
 }

@@ -112,7 +112,7 @@ void cMovingObjList::show(SDL_Renderer* lpRenderer)
 	}
 }
 
-void cMovingObjList::move()
+void cMovingObjList::move() // необходимо сделать чтобы таймер вызывал эту функцию с перерывом, иначе движение будет слишком быстрым
 {
 	if (lpFront)
 	{

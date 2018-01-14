@@ -11,9 +11,10 @@ class cGameField : public cGame
 	cGraphObj background;
 	int iLevel;
 	// доделать
-	void compare();
+	int compare();
 public:
 	cGameField(int);
 	~cGameField();
+	int start(); // на вход скорее всего будет приниматься структура 'игрок'
 };
 

@@ -12,6 +12,7 @@ public:
 	cMovingGraphObj(char*, int);
 	cMovingGraphObj(char*, int, int, int);
 	cMovingGraphObj(char*, int, int, int, int, int);
+	cMovingGraphObj(const cMovingGraphObj&);
 	~cMovingGraphObj();
 	void setSpeed(int);
 	int getSpeed();
@@ -19,5 +20,6 @@ public:
 	SDL_Point getDest();
 	bool move();
 	virtual void paint(SDL_Renderer*);
+	cMovingGraphObj operator=(const cMovingGraphObj&);
 };
 

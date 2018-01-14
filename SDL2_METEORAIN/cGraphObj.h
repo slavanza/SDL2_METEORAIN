@@ -5,8 +5,8 @@
 
 class cGraphObj
 {
-	SDL_Surface* lpSurface;
 protected:
+	SDL_Surface * lpSurface;
 	SDL_Rect rect;
 public:
 	cGraphObj(char*);

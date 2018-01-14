@@ -42,7 +42,7 @@ void cObjList::add(cGraphObj input)
 		lpFront = new cObjPage(input);
 }
 
-int cObjList::remove(int x)
+int cObjList::remove(SDL_Rect rect)
 {
 	int iCount = 0;
 	if (lpFront)
@@ -50,7 +50,7 @@ int cObjList::remove(int x)
 		cObjPage* temp = lpFront;
 		while (temp->lpNext)
 		{
-			if ((temp->data.getRect().x < x) && ((temp->data.getRect().x + temp->data.getRect().w) > x))
+			if (SDL_HasIntersection(&rect, &(temp->data.getRect())))
 			{
 				cObjPage* _temp = lpFront;
 				while (_temp->lpNext != temp)
@@ -83,7 +83,7 @@ cGraphObj* cObjList::get(int n)
 	return &(cur->data);
 }
 
-int cObjList::find(int x)
+int cObjList::find(SDL_Rect rect)
 {
 	int iCount = 0;
 	if (lpFront)
@@ -91,7 +91,7 @@ int cObjList::find(int x)
 		cObjPage* temp = lpFront;
 		while (temp->lpNext)
 		{
-			if ((temp->data.getRect().x < x) && ((temp->data.getRect().x + temp->data.getRect().w) > x))
+			if (SDL_HasIntersection(&rect, &(temp->data.getRect())))
 			{
 				iCount++;
 			}

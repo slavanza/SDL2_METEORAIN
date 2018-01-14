@@ -14,9 +14,9 @@ public:
 	cObjList();
 	~cObjList();
 	void add(cGraphObj);
-	int remove(int);
+	int remove(SDL_Rect);
 	cGraphObj* get(int);
-	int find(int);
+	int find(SDL_Rect);
 	void show(SDL_Renderer*);
 };
 

@@ -40,7 +40,7 @@ void cMovingObjList::add(cMovingGraphObj input)
 		lpFront = new cMovingObjPage(input);
 }
 
-int cMovingObjList::remove(int x, int y)
+int cMovingObjList::remove(SDL_Rect rect)
 {
 	int iCount = 0;
 	if (lpFront)
@@ -48,7 +48,7 @@ int cMovingObjList::remove(int x, int y)
 		cMovingObjPage* temp = lpFront;
 		while (temp->lpNext)
 		{
-			if ((temp->data.getRect().x < x) && ((temp->data.getRect().x + temp->data.getRect().w) > x) && (temp->data.getRect().y < y) && ((temp->data.getRect().y + temp->data.getRect().h) > y))
+			if (SDL_HasIntersection(&rect, &(temp->data.getRect())))
 			{
 				cMovingObjPage* _temp = lpFront;
 				while (_temp->lpNext != temp)
@@ -79,6 +79,24 @@ cMovingGraphObj* cMovingObjList::get(int n)
 			return nullptr;
 	}
 	return &(cur->data);
+}
+
+int cMovingObjList::find(SDL_Rect rect)
+{
+	int iCount = 0;
+	if (lpFront)
+	{
+		cMovingObjPage* temp = lpFront;
+		while (temp->lpNext)
+		{
+			if (SDL_HasIntersection(&rect, &(temp->data.getRect())))
+			{
+				iCount++;
+			}
+			temp = temp->lpNext;
+		}
+	}
+	return iCount;
 }
 
 void cMovingObjList::show(SDL_Renderer* lpRenderer)

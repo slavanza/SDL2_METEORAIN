@@ -121,6 +121,7 @@
     <ClCompile Include="cGameField.cpp" />
     <ClCompile Include="cGraphObj.cpp" />
     <ClCompile Include="cMovingGraphObj.cpp" />
+    <ClCompile Include="cMovingObjList.cpp" />
     <ClCompile Include="cObjList.cpp" />
     <ClCompile Include="cTimer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="cGameField.h" />
     <ClInclude Include="cGraphObj.h" />
     <ClInclude Include="cMovingGraphObj.h" />
+    <ClInclude Include="cMovingObjList.h" />
     <ClInclude Include="cObjList.h" />
     <ClInclude Include="cTimer.h" />
     <ClInclude Include="stdafx.h" />

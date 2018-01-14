@@ -21,6 +21,8 @@ cGraphObj::cGraphObj(char* szName, int x, int y)
 
 cGraphObj::cGraphObj(const cGraphObj& copy)
 {
+	if (lpSurface)
+		SDL_FreeSurface(lpSurface);
 	lpSurface = SDL_CreateRGBSurface(0, copy.lpSurface->w, copy.lpSurface->h, copy.lpSurface->format->BitsPerPixel, copy.lpSurface->format->Rmask, copy.lpSurface->format->Gmask, copy.lpSurface->format->Bmask, copy.lpSurface->format->Amask);
 	SDL_BlitSurface(copy.lpSurface, NULL, lpSurface, NULL);
 }
@@ -59,4 +61,13 @@ void cGraphObj::paint(SDL_Renderer* lpRenderer)
 	SDL_Texture* lpTexture = SDL_CreateTextureFromSurface(lpRenderer, lpSurface);
 	SDL_RenderCopy(lpRenderer, lpTexture, NULL, &rect);
 	SDL_DestroyTexture(lpTexture);
+}
+
+cGraphObj cGraphObj::operator=(const cGraphObj& copy)
+{
+	if (lpSurface)
+		SDL_FreeSurface(lpSurface);
+	lpSurface = SDL_CreateRGBSurface(0, copy.lpSurface->w, copy.lpSurface->h, copy.lpSurface->format->BitsPerPixel, copy.lpSurface->format->Rmask, copy.lpSurface->format->Gmask, copy.lpSurface->format->Bmask, copy.lpSurface->format->Amask);
+	SDL_BlitSurface(copy.lpSurface, NULL, lpSurface, NULL);
+	return *this;
 }

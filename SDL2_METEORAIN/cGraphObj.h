@@ -18,5 +18,6 @@ public:
 	SDL_Texture* makeTexture(SDL_Renderer*);
 	virtual void paint(SDL_Renderer*);
 	SDL_Rect getRect();
+	cGraphObj operator=(const cGraphObj&);
 };
 

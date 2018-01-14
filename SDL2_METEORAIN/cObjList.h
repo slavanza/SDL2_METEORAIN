@@ -1,9 +1,9 @@
 #pragma once
-#include "cMovingGraphObj.h"
-
+#include "cGraphObj.h"
 
 class cObjList
 {
+private:
 	struct cObjPage
 	{
 		cGraphObj data;
@@ -14,7 +14,9 @@ public:
 	cObjList();
 	~cObjList();
 	void add(cGraphObj);
-	void remove(int x);
+	int remove(int);
+	cGraphObj* get(int);
+	int find(int);
 	void show(SDL_Renderer*);
 };
 

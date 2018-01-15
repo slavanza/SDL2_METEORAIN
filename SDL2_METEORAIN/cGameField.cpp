@@ -44,7 +44,38 @@ cGameField::~cGameField()
 {
 }
 
-int cGameField::start()
+cGameResult cGameField::start()
 {
-	return 0;
+	int iScore = 0;
+
+	SDL_Event event;
+	SDL_Point click;
+
+	bool bFlag = false;
+	while (!bFlag)
+	{
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					click.x = event.button.x;
+					click.y = event.button.y;
+					iScore += movingObjList.remove(click);
+				}
+			}
+		}
+		int iDestroyed = compare();
+		if (iDestroyed)
+		{
+			dealDamage(iDestroyed * 10);
+			iScore -= iDestroyed * 5;
+		}
+		if (getHealth() <= 0)
+		{
+			bFlag = true;
+		}
+	}
+	return cGameResult(iScore, timer.getTime(), iLevel);
 }

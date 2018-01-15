@@ -16,6 +16,7 @@ public:
 	~cMovingObjList();
 	void add(cMovingGraphObj);
 	int remove(SDL_Rect);
+	int remove(SDL_Point);
 	cMovingGraphObj* get(int);
 	int find(SDL_Rect);
 	void show(SDL_Renderer*);

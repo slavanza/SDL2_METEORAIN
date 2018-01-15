@@ -3,6 +3,7 @@
 #include "cGame.h"
 #include "cObjList.h"
 #include "cMovingObjList.h"
+#include "cGameResult.h"
 
 class cGameField : public cGame
 {
@@ -15,6 +16,6 @@ class cGameField : public cGame
 public:
 	cGameField(int);
 	~cGameField();
-	int start(); // на вход скорее всего будет приниматься структура 'игрок'
+	cGameResult start(); // на вход скорее всего будет приниматься структура 'игрок'
 };
 

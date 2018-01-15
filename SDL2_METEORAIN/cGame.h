@@ -7,7 +7,7 @@ class cGame
 	int iScore; // очки
 	int iHealth; // уровень здоровья
 	int iDamage; // количество урона
-private:
+protected:
 	cTimer timer; // таймер
 public:
 	cGame();

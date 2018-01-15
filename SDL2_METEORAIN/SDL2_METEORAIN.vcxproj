@@ -119,6 +119,7 @@
   <ItemGroup>
     <ClCompile Include="cGame.cpp" />
     <ClCompile Include="cGameField.cpp" />
+    <ClCompile Include="cGameResult.cpp" />
     <ClCompile Include="cGraphObj.cpp" />
     <ClCompile Include="cMovingGraphObj.cpp" />
     <ClCompile Include="cMovingObjList.cpp" />
@@ -130,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="cGame.h" />
     <ClInclude Include="cGameField.h" />
+    <ClInclude Include="cGameResult.h" />
     <ClInclude Include="cGraphObj.h" />
     <ClInclude Include="cMovingGraphObj.h" />
     <ClInclude Include="cMovingObjList.h" />

@@ -66,6 +66,32 @@ int cMovingObjList::remove(SDL_Rect rect)
 	return iCount;
 }
 
+int cMovingObjList::remove(SDL_Point point)
+{
+	int iCount = 0;
+	if (lpFront)
+	{
+		cMovingObjPage* temp = lpFront;
+		while (temp->lpNext)
+		{
+			if (SDL_EnclosePoints(&point, 1, &(temp->data.getRect()), NULL))
+			{
+				cMovingObjPage* _temp = lpFront;
+				while (_temp->lpNext != temp)
+				{
+					_temp = _temp->lpNext;
+				}
+				cMovingObjPage* buf = temp->lpNext;
+				delete temp;
+				_temp->lpNext = buf;
+				iCount++;
+			}
+			temp = temp->lpNext;
+		}
+	}
+	return iCount;
+}
+
 cMovingGraphObj* cMovingObjList::get(int n)
 {
 	if (!lpFront)

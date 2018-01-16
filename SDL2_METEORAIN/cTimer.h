@@ -12,3 +12,4 @@ public:
 	Uint32 resetTime();
 };
 
+void formatTime(Uint32, unsigned&, unsigned&);

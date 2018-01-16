@@ -23,3 +23,9 @@ Uint32 cTimer::resetTime()
 	uTicks = uTime + uTicks;
 	return uTime;
 }
+
+void formatTime(Uint32 uMS, unsigned &uMin, unsigned &uSec)
+{
+	uMin = uMS / 60000;
+	uSec = uMS / 1000 - uMin * 60;
+}

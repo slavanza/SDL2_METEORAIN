@@ -17,5 +17,6 @@ public:
 	cGameField(int);
 	~cGameField();
 	cGameResult start(); // на вход скорее всего будет приниматься структура 'игрок'
+	void draw(SDL_Renderer*);
 };
 

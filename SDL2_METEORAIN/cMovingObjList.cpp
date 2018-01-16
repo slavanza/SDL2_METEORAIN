@@ -150,3 +150,8 @@ void cMovingObjList::move() // необходимо сделать чтобы таймер вызывал эту функц
 		}
 	}
 }
+
+bool cMovingObjList::isEmpty()
+{
+	return lpFront == nullptr;
+}

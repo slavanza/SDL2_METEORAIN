@@ -79,3 +79,10 @@ cGameResult cGameField::start()
 	}
 	return cGameResult(iScore, timer.getTime(), iLevel);
 }
+
+void cGameField::draw(SDL_Renderer* lpRenderer)
+{
+	background.paint(lpRenderer);
+	objList.show(lpRenderer);
+	movingObjList.show(lpRenderer);
+}

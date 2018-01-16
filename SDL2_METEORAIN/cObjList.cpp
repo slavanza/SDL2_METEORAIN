@@ -113,3 +113,8 @@ void cObjList::show(SDL_Renderer* lpRenderer)
 		}
 	}
 }
+
+bool cObjList::isEmpty()
+{
+	return lpFront == nullptr;
+}

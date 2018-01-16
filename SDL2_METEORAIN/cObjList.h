@@ -18,5 +18,6 @@ public:
 	cGraphObj* get(int);
 	int find(SDL_Rect);
 	void show(SDL_Renderer*);
+	bool isEmpty();
 };
 

@@ -21,5 +21,6 @@ public:
 	int find(SDL_Rect);
 	void show(SDL_Renderer*);
 	void move();
+	bool isEmpty();
 };
 

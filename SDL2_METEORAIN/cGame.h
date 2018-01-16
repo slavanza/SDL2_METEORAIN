@@ -5,18 +5,14 @@
 class cGame
 {
 	int iScore; // очки
-	int iHealth; // уровень здоровья
-	int iDamage; // количество урона
 protected:
 	cTimer timer; // таймер
+	int incScore(int);
+	int decScore(int);
 public:
 	cGame();
 	~cGame();
 	int getScore();
-	int getHealth();
-	int getDamage();
-	bool heal();
-	bool dealDamage(int);
 	Uint32 getTime();
 };
 

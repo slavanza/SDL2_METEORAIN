@@ -62,17 +62,16 @@ cGameResult cGameField::start()
 				{
 					click.x = event.button.x;
 					click.y = event.button.y;
-					iScore += movingObjList.remove(click);
+					incScore(movingObjList.remove(click));
 				}
 			}
 		}
 		int iDestroyed = compare();
 		if (iDestroyed)
 		{
-			dealDamage(iDestroyed * 10);
-			iScore -= iDestroyed * 5;
+			decScore(iDestroyed);
 		}
-		if (getHealth() <= 0)
+		if (objList.isEmpty())
 		{
 			bFlag = true;
 		}

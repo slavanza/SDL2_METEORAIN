@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL_timer.h>
+#include <SDL.h>
 
 class cTimer
 { 

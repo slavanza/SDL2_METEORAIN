@@ -4,6 +4,7 @@
 #include "cObjList.h"
 #include "cMovingObjList.h"
 #include "cGameResult.h"
+//#include "cPlayer.h"
 
 class cGameField : public cGame
 {
@@ -11,7 +12,6 @@ class cGameField : public cGame
 	cMovingObjList movingObjList;
 	cGraphObj background;
 	int iLevel;
-	// доделать
 	int compare();
 public:
 	cGameField(int);

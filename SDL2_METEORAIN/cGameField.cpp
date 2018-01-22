@@ -1,5 +1,7 @@
 #include "cGameField.h"
-
+#include <random>
+#include <ctime>
+#include <SDL_timer.h>
 int cGameField::compare()
 {
 	cMovingGraphObj* lpCur = movingObjList.get(0);
@@ -17,25 +19,45 @@ int cGameField::compare()
 	return iCount;
 }
 
-cGameField::cGameField(int iLevelInput):background("default")
+void cGameField::generate()
+{
+	static bool b = false;
+	if (!b)
+	{
+		srand(time(0));
+		b = true;
+	}
+	int x = rand() % 590;
+	int n = -2 + rand() % 4;
+	int iSpeed = 3 + n;
+	cMovingGraphObj meteorite("Textures/Meteorite.jpg", iSpeed, x, 0, x, 400);
+	movingObjList.add(meteorite);
+}
+
+Uint32 gen(Uint32 interval, void* vParam)
+{
+	((cGameField*)vParam)->generate();
+	return interval;
+}
+
+cGameField::cGameField(int iLevelInput):background("Textures/Background.jpg")
 {
 	iLevel = iLevelInput;
 	switch (iLevel)
 	{
-	case 0:
-	{
-		cGraphObj temp("level_0");
-		background = temp;
-	}
-		break;
 	case 1:
 	{
 		cGraphObj temp("level_1");
 		background = temp;
 	}
 		break;
-	default:
-		;
+	}
+	cGraphObj house("Textures/House.jpg");
+	int iPos = (640 - house.getRect().w) / (5 + iLevel);
+	for (int i = 5 + iLevel; i >= 0; i--)
+	{
+		house.setPos(5 + i * iPos, 400);
+		objList.add(house);
 	}
 }
 
@@ -44,8 +66,9 @@ cGameField::~cGameField()
 {
 }
 
-cGameResult cGameField::start()
+cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 {
+	SDL_TimerID generate_timer = SDL_AddTimer(2000, gen, this);
 	int iScore = 0;
 
 	SDL_Event event;
@@ -54,8 +77,20 @@ cGameResult cGameField::start()
 	bool bFlag = false;
 	while (!bFlag)
 	{
+		draw(lpRenderer);
 		while (SDL_PollEvent(&event))
 		{
+			if (event.type == SDL_QUIT)
+			{
+				bFlag = true;
+			}
+			if (event.type == SDL_KEYDOWN)
+			{
+				if (event.key.keysym.sym == SDLK_ESCAPE)
+				{
+					bFlag = true;
+				}
+			}
 			if (event.type == SDL_MOUSEBUTTONDOWN)
 			{
 				if (event.button.button == SDL_BUTTON_LEFT)
@@ -76,12 +111,15 @@ cGameResult cGameField::start()
 			bFlag = true;
 		}
 	}
+	SDL_RemoveTimer(generate_timer);
 	return cGameResult(iScore, timer.getTime(), iLevel);
 }
 
 void cGameField::draw(SDL_Renderer* lpRenderer)
 {
+	SDL_RenderClear(lpRenderer);
 	background.paint(lpRenderer);
 	objList.show(lpRenderer);
 	movingObjList.show(lpRenderer);
+	SDL_RenderPresent(lpRenderer);
 }

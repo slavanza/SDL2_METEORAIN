@@ -13,10 +13,12 @@ class cGameField : public cGame
 	cGraphObj background;
 	int iLevel;
 	int compare();
+	void generate();
 public:
 	cGameField(int);
 	~cGameField();
-	cGameResult start(); // на вход скорее всего будет приниматься структура 'игрок'
+	cGameResult start(SDL_Renderer*); // на вход скорее всего будет приниматься структура 'игрок'; SDL_Renderer - временный параметр
 	void draw(SDL_Renderer*);
+	friend Uint32 gen(Uint32, void*);
 };
 

@@ -1,10 +1,11 @@
 #include "cGraphObj.h"
-
+#include <SDL_image.h>
+#include <iostream>
 
 
 cGraphObj::cGraphObj(char* szName)
 {
-	SDL_Surface* lpSurface = IMG_Load(szName);
+	lpSurface = IMG_Load(szName);
 	rect.w = lpSurface->w;
 	rect.h = lpSurface->h;
 	rect.x = rect.y = 0;
@@ -12,7 +13,7 @@ cGraphObj::cGraphObj(char* szName)
 
 cGraphObj::cGraphObj(char* szName, int x, int y)
 {
-	SDL_Surface* lpSurface = IMG_Load(szName);
+	lpSurface = IMG_Load(szName);
 	rect.x = x;
 	rect.y = y;
 	rect.w = lpSurface->w;
@@ -21,10 +22,9 @@ cGraphObj::cGraphObj(char* szName, int x, int y)
 
 cGraphObj::cGraphObj(const cGraphObj& copy)
 {
-	if (lpSurface)
-		SDL_FreeSurface(lpSurface);
 	lpSurface = SDL_CreateRGBSurface(0, copy.lpSurface->w, copy.lpSurface->h, copy.lpSurface->format->BitsPerPixel, copy.lpSurface->format->Rmask, copy.lpSurface->format->Gmask, copy.lpSurface->format->Bmask, copy.lpSurface->format->Amask);
 	SDL_BlitSurface(copy.lpSurface, NULL, lpSurface, NULL);
+	rect = copy.rect;
 }
 
 cGraphObj::~cGraphObj()
@@ -69,5 +69,6 @@ cGraphObj cGraphObj::operator=(const cGraphObj& copy)
 		SDL_FreeSurface(lpSurface);
 	lpSurface = SDL_CreateRGBSurface(0, copy.lpSurface->w, copy.lpSurface->h, copy.lpSurface->format->BitsPerPixel, copy.lpSurface->format->Rmask, copy.lpSurface->format->Gmask, copy.lpSurface->format->Bmask, copy.lpSurface->format->Amask);
 	SDL_BlitSurface(copy.lpSurface, NULL, lpSurface, NULL);
+	rect = copy.rect;
 	return *this;
 }

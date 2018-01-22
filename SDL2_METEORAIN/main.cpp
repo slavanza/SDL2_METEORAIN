@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "cGameField.h"
 
 #undef main
 
@@ -7,9 +8,13 @@
 
 bool bSDL_Init = false;
 bool bTTF_Init = false;
+bool bIMG_Init = false;
 
 void InitAll();
 void QuitAll();
+
+
+
 
 int main(int argc, char** argv)
 {
@@ -26,12 +31,19 @@ int main(int argc, char** argv)
 		return -3;
 	}
 
+
+	cGameField game(0);
+	game.start(mainRnd);
+
 	system("pause");
 	SDL_DestroyRenderer(mainRnd);
 	SDL_DestroyWindow(mainWnd);
 	std::cout << "Applicaion ended" << std::endl;
 	return 0;
 }
+
+
+
 
 void InitAll()
 {
@@ -49,6 +61,13 @@ void InitAll()
 	}
 	std::cout << "[ InitAll ] : TTF Initialized" << std::endl;
 	bTTF_Init = true;
+	if (IMG_Init(IMG_INIT_JPG) < 0)
+	{
+		std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
+		exit(-2);
+	}
+	std::cout << "[ InitAll ] : IMG Initialized" << std::endl;
+	bIMG_Init = true;
 }
 
 void QuitAll()
@@ -62,5 +81,10 @@ void QuitAll()
 	{
 		TTF_Quit();
 		std::cout << "[ InitAll ] : TTF Uninitialized" << std::endl;
+	}
+	if (bIMG_Init)
+	{
+		IMG_Quit();
+		std::cout << "[ InitAll ] : IMG Uninitialized" << std::endl;
 	}
 }

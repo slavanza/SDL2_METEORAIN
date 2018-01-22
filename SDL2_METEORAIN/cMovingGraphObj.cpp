@@ -79,7 +79,7 @@ SDL_Point cMovingGraphObj::getDest()
 
 bool cMovingGraphObj::move()
 {
-	if ((dest.x == rect.x) || (dest.y == rect.y))
+	if ((dest.x == rect.x) && (dest.y == rect.y))
 		return false;
 	if (dest.x > rect.x)
 	{
@@ -117,6 +117,8 @@ void cMovingGraphObj::paint(SDL_Renderer* lpRenderer)
 	center.y = rect.h / 2;
 	SDL_RenderCopyEx(lpRenderer, lpTexture, NULL, &rect, angle, &center, SDL_FLIP_NONE);
 	SDL_DestroyTexture(lpTexture);
+
+	move(); // функция перемещения временно вшита в отрисовку
 }
 
 cMovingGraphObj cMovingGraphObj::operator=(const cMovingGraphObj& copy)

@@ -118,7 +118,7 @@ void cMovingGraphObj::paint(SDL_Renderer* lpRenderer)
 	SDL_RenderCopyEx(lpRenderer, lpTexture, NULL, &rect, angle, &center, SDL_FLIP_NONE);
 	SDL_DestroyTexture(lpTexture);
 
-	move(); // функция перемещения временно вшита в отрисовку
+	//move(); // функция перемещения временно вшита в отрисовку
 }
 
 cMovingGraphObj cMovingGraphObj::operator=(const cMovingGraphObj& copy)
@@ -131,4 +131,9 @@ cMovingGraphObj cMovingGraphObj::operator=(const cMovingGraphObj& copy)
 	angle = copy.angle;
 	dest = copy.dest;
 	return *this;
+}
+
+bool cMovingGraphObj::isMoving()
+{
+	return !((dest.y == rect.y) && (dest.x == rect.x));
 }

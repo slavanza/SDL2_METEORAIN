@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="cGame" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Position X="5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQGAAAAAAAEAAAAAACAAAAAAAAAAASAAAAAAAEAAAA=</HashCode>
       <FileName>cGame.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="cGameField" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+    <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAEAIAAAQAgAAIEAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <HashCode>AAABAAAEAIAAAQAgAAIEAAAAAAAAAAAAQAAAAAAAYAA=</HashCode>
       <FileName>cGameField.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="cGameResult" Collapsed="true">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+    <Position X="8.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAEAAAAAABAAAGAgAAAAAAAAACAAAAAAAEAAAA=</HashCode>
       <FileName>cGameResult.h</FileName>
@@ -24,19 +24,19 @@
   <Class Name="cGraphObj" Collapsed="true">
     <Position X="1.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACgAAACAACEAAAgAAIAQIAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>ACgAAACAACEAAAgAAIAQIAAAAAAAAAAAAAAgAAAAABA=</HashCode>
       <FileName>cGraphObj.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="cMovingGraphObj" Collapsed="true">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAgAAAAAAACAAAAAgAAJAAEQCgABAAAgAIBAAAA=</HashCode>
+      <HashCode>AAgAAAgAAAAAAACAAAAAgAAJAAEQCgABAAAhAIBAAAA=</HashCode>
       <FileName>cMovingGraphObj.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="cMovingObjList" Collapsed="true">
-    <Position X="7" Y="0.5" Width="1.5" />
+    <Position X="8.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAgAAAAACEAAAAQAAAAAAAAAAQDAAAAAACQAA=</HashCode>
       <FileName>cMovingObjList.h</FileName>
@@ -50,7 +50,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="cPlayer" Collapsed="true">
-    <Position X="5.25" Y="1.5" Width="1.5" />
+    <Position X="8.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AkAAQACAAAAgAoAAAAAAAAgAABAAAAAAAAAOAAAABAA=</HashCode>
       <FileName>cPlayer.h</FileName>
@@ -64,7 +64,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="cTimer" Collapsed="true">
-    <Position X="7" Y="1.5" Width="1.5" />
+    <Position X="8.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAEAAAAAgAAAAAAAAAAgAAEAAAA=</HashCode>
       <FileName>cTimer.h</FileName>

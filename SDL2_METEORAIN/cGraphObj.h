@@ -18,5 +18,6 @@ public:
 	virtual void paint(SDL_Renderer*);
 	SDL_Rect getRect();
 	cGraphObj operator=(const cGraphObj&);
+	void changeImg(char*);
 };
 

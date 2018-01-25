@@ -72,8 +72,10 @@ int cMovingObjList::remove(SDL_Point point)
 	cMovingObjPage *temp = lpFront;
 	while (temp)
 	{
+		bool bMoving = false;
 		if (SDL_EnclosePoints(&point, 1, &(temp->data.getRect()), NULL))
 		{
+			bMoving = temp->data.isMoving();
 			cMovingObjPage *_temp = lpFront;
 			if (_temp == temp)
 			{
@@ -91,7 +93,10 @@ int cMovingObjList::remove(SDL_Point point)
 				delete temp;
 				temp = _temp;
 			}
-			iCount++;
+			if (bMoving)
+				iCount += 2;
+			else
+				iCount++;
 		}
 		temp = temp->lpNext;
 	}
@@ -145,17 +150,22 @@ void cMovingObjList::show(SDL_Renderer* lpRenderer)
 	}
 }
 
-void cMovingObjList::move() // необходимо сделать чтобы таймер вызывал эту функцию с перерывом, иначе движение будет слишком быстрым
+bool cMovingObjList::move() // необходимо сделать чтобы таймер вызывал эту функцию с перерывом, иначе движение будет слишком быстрым
 {
+	bool bMove = false;
 	if (lpFront)
 	{
 		cMovingObjPage* temp = lpFront;
 		while (temp->lpNext)
 		{
-			temp->data.move();
+			if (!(temp->data.move()))
+				temp->data.changeImg("Textures/Fallen.png");
+			else
+				bMove = true;
 			temp = temp->lpNext;
 		}
 	}
+	return bMove;
 }
 
 bool cMovingObjList::isEmpty()

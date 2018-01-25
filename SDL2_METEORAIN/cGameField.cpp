@@ -30,7 +30,7 @@ void cGameField::generate()
 	int x = rand() % 590;
 	int n = -2 + rand() % 4;
 	int iSpeed = 3 + n;
-	cMovingGraphObj meteorite("Textures/Meteorite.jpg", iSpeed, x, 0, x, 400);
+	cMovingGraphObj meteorite("Textures/Meteorite.png", iSpeed, x, -100, x, 400);
 	movingObjList.add(meteorite);
 }
 
@@ -75,20 +75,24 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 	SDL_Point click;
 
 	bool bFlag = false;
+	bool bPaused = false;
 	while (!bFlag)
 	{
+		movingObjList.move();
 		draw(lpRenderer);
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_QUIT)
 			{
 				bFlag = true;
+				bPaused = true;
 			}
 			if (event.type == SDL_KEYDOWN)
 			{
 				if (event.key.keysym.sym == SDLK_ESCAPE)
 				{
 					bFlag = true;
+					bPaused = true;
 				}
 			}
 			if (event.type == SDL_MOUSEBUTTONDOWN)
@@ -108,11 +112,18 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 		}
 		if (objList.isEmpty())
 		{
+			// [TODO] : ƒобавить сюда отображение сообщени€ о проигрыше
+			while (movingObjList.move())
+			{
+				draw(lpRenderer);
+			}
+			movingObjList.move();
+			draw(lpRenderer);
 			bFlag = true;
 		}
 	}
 	SDL_RemoveTimer(generate_timer);
-	return cGameResult(iScore, timer.getTime(), iLevel);
+	return cGameResult(iScore, timer.getTime(), iLevel, bPaused);
 }
 
 void cGameField::draw(SDL_Renderer* lpRenderer)

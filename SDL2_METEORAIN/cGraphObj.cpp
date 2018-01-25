@@ -5,19 +5,35 @@
 
 cGraphObj::cGraphObj(char* szName)
 {
-	lpSurface = IMG_Load(szName);
-	rect.w = lpSurface->w;
-	rect.h = lpSurface->h;
-	rect.x = rect.y = 0;
+	if (!strcmp(szName, "default"))
+	{
+		lpSurface = nullptr;
+		rect.x = rect.y = rect.w = rect.h = 0;
+	}
+	else
+	{
+		lpSurface = IMG_Load(szName);
+		rect.w = lpSurface->w;
+		rect.h = lpSurface->h;
+		rect.x = rect.y = 0;
+	}
 }
 
 cGraphObj::cGraphObj(char* szName, int x, int y)
 {
-	lpSurface = IMG_Load(szName);
-	rect.x = x;
-	rect.y = y;
-	rect.w = lpSurface->w;
-	rect.h = lpSurface->h;
+	if (!strcmp(szName, "default"))
+	{
+		lpSurface = nullptr;
+		rect.x = rect.y = rect.w = rect.h = 0;
+	}
+	else
+	{
+		lpSurface = IMG_Load(szName);
+		rect.x = x;
+		rect.y = y;
+		rect.w = lpSurface->w;
+		rect.h = lpSurface->h;
+	}
 }
 
 cGraphObj::cGraphObj(const cGraphObj& copy)
@@ -71,4 +87,16 @@ cGraphObj cGraphObj::operator=(const cGraphObj& copy)
 	SDL_BlitSurface(copy.lpSurface, NULL, lpSurface, NULL);
 	rect = copy.rect;
 	return *this;
+}
+
+void cGraphObj::changeImg(char* szName)
+{
+	int w = rect.w, h = rect.h;
+	if (lpSurface)
+		SDL_FreeSurface(lpSurface);
+	lpSurface = IMG_Load(szName);
+	rect.w = lpSurface->w;
+	rect.h = lpSurface->h;
+	rect.x += (w - rect.w) / 2;
+	rect.y += h - rect.h;
 }

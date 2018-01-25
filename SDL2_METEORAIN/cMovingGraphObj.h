@@ -21,5 +21,6 @@ public:
 	bool move();
 	virtual void paint(SDL_Renderer*);
 	cMovingGraphObj operator=(const cMovingGraphObj&);
+	bool isMoving();
 };
 

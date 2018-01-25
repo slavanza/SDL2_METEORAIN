@@ -2,11 +2,12 @@
 
 
 
-cGameResult::cGameResult(int iScoreInput, unsigned uTimeInput, int iLevelInput)
+cGameResult::cGameResult(int iScoreInput, unsigned uTimeInput, int iLevelInput, bool bPausedInput)
 {
 	iScore = iScoreInput;
 	uTime = uTimeInput;
 	iLevel = iLevelInput;
+	bPaused = bPausedInput;
 }
 
 
@@ -27,4 +28,9 @@ unsigned cGameResult::getTime()
 int cGameResult::getLevel()
 {
 	return iLevel;
+}
+
+bool cGameResult::isPaused()
+{
+	return bPaused;
 }

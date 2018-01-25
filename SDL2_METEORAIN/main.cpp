@@ -61,7 +61,7 @@ void InitAll()
 	}
 	std::cout << "[ InitAll ] : TTF Initialized" << std::endl;
 	bTTF_Init = true;
-	if (IMG_Init(IMG_INIT_JPG) < 0)
+	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) < 0)
 	{
 		std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
 		exit(-2);

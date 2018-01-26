@@ -28,8 +28,8 @@ void cGameField::generate()
 		b = true;
 	}
 	int x = rand() % 590;
-	int n = -2 + rand() % 4;
-	int iSpeed = 3 + n;
+	int n = -(iLevel / 2) + rand() % iLevel;
+	int iSpeed = iLevel / 2 + 1 + n;
 	cMovingGraphObj meteorite("Textures/Meteorite.png", iSpeed, x, -100, x, 400);
 	movingObjList.add(meteorite);
 }
@@ -42,21 +42,15 @@ Uint32 gen(Uint32 interval, void* vParam)
 
 cGameField::cGameField(int iLevelInput):background("Textures/Background.jpg")
 {
+	if (iLevelInput <= 0)
+		iLevelInput = 1;
 	iLevel = iLevelInput;
-	switch (iLevel)
-	{
-	case 1:
-	{
-		cGraphObj temp("level_1");
-		background = temp;
-	}
-		break;
-	}
-	cGraphObj house("Textures/House.jpg");
-	int iPos = (640 - house.getRect().w) / (5 + iLevel);
+	cGraphObj house("Textures/House.png");
+	cGraphObj meteorite("Textures/Meteorite.png");
+	int iPos = (640 - house.getRect().w - meteorite.getRect().w / 2) / (5 + iLevel);
 	for (int i = 5 + iLevel; i >= 0; i--)
 	{
-		house.setPos(5 + i * iPos, 400);
+		house.setPos(meteorite.getRect().w / 4 + i * iPos, 400);
 		objList.add(house);
 	}
 }
@@ -112,6 +106,7 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 		}
 		if (objList.isEmpty())
 		{
+			SDL_RemoveTimer(generate_timer);
 			// [TODO] : ƒобавить сюда отображение сообщени€ о проигрыше
 			while (movingObjList.move())
 			{

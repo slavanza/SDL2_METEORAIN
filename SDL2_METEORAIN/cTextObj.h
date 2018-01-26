@@ -9,10 +9,14 @@ class cTextObj : public cGraphObj
 	char* lpFont;
 	int iSize;
 	SDL_Color color;
+	void render();
 public:
 	cTextObj(char*, int, char*);
 	cTextObj(char*, int, char*, int, int);
 	~cTextObj();
 	void changeImg(char*);
 	void setColor(int = 255, int = 255, int = 255, int = 255);
+	void setSize(int);
+	void setText(char*);
+	void setFont(char*);
 };

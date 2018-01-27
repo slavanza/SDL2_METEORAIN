@@ -84,27 +84,31 @@ bool cMovingGraphObj::move()
 	if (dest.x > rect.x)
 	{
 		if ((rect.x + xSpeed) > dest.x)
-			dest.x = rect.x;
-		rect.x += xSpeed;
+			rect.x = dest.x;
+		else
+			rect.x += xSpeed;
 	}
 	else
 	{
 		if ((rect.x - xSpeed) < dest.x)
-			dest.x = rect.x + xSpeed;
-		rect.x -= xSpeed;
+			rect.x = dest.x;
+		else
+			rect.x -= xSpeed;
 	}
 
 	if (dest.y > rect.y)
 	{
 		if ((rect.y + ySpeed) > dest.y)
-			dest.y = rect.y;
-		rect.y += ySpeed;
+			rect.y = dest.y;
+		else
+			rect.y += ySpeed;
 	}
 	else
 	{
 		if ((rect.y - ySpeed) < dest.y)
-			dest.y = rect.y + ySpeed;
-		rect.y -= ySpeed;
+			rect.y = dest.y;
+		else
+			rect.y -= ySpeed;
 	}
 	return true;
 }
@@ -118,7 +122,7 @@ void cMovingGraphObj::paint(SDL_Renderer* lpRenderer)
 	SDL_RenderCopyEx(lpRenderer, lpTexture, NULL, &rect, angle, &center, SDL_FLIP_NONE);
 	SDL_DestroyTexture(lpTexture);
 
-	//move(); // ôóíêöèÿ ïåðåìåùåíèÿ âðåìåííî âøèòà â îòðèñîâêó
+	//move(); // Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ð¸Ñ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ Ð²ÑˆÐ¸Ñ‚Ð° Ð² Ð¾Ñ‚Ñ€Ð¸ÑÐ¾Ð²ÐºÑƒ
 }
 
 cMovingGraphObj cMovingGraphObj::operator=(const cMovingGraphObj& copy)

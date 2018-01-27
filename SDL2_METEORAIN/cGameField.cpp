@@ -47,8 +47,8 @@ cGameField::cGameField(int iLevelInput):background("Textures/Background.jpg")
 	iLevel = iLevelInput;
 	cGraphObj house("Textures/House.png");
 	cGraphObj meteorite("Textures/Meteorite.png");
-	int iPos = (640 - house.getRect().w - meteorite.getRect().w / 2) / (5 + iLevel);
-	for (int i = 5 + iLevel; i >= 0; i--)
+	int iPos = (640 - house.getRect().w - meteorite.getRect().w / 2) / (4 + iLevel);
+	for (int i = 4 + iLevel; i >= 0; i--)
 	{
 		house.setPos(meteorite.getRect().w / 4 + i * iPos, 400);
 		objList.add(house);
@@ -106,14 +106,19 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 		}
 		if (objList.isEmpty())
 		{
+			cTextObj loseMsg("a_AlternaSw.ttf", 40, "РРіСЂР° РѕРєРѕРЅС‡РµРЅР°");
+			loseMsg.setPos(320 - loseMsg.getRect().w / 2, 240 - loseMsg.getRect().h / 2);
 			SDL_RemoveTimer(generate_timer);
-			// [TODO] : Добавить сюда отображение сообщения о проигрыше
 			while (movingObjList.move())
 			{
 				draw(lpRenderer);
+				loseMsg.paint(lpRenderer);
+				SDL_RenderPresent(lpRenderer);
 			}
 			movingObjList.move();
 			draw(lpRenderer);
+			loseMsg.paint(lpRenderer);
+			SDL_RenderPresent(lpRenderer);
 			bFlag = true;
 		}
 	}

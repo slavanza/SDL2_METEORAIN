@@ -4,9 +4,9 @@
 
 class cGame
 {
-	int iScore; // очки
+	int iScore; // РѕС‡РєРё
 protected:
-	cTimer timer; // таймер
+	cTimer timer; // С‚Р°Р№РјРµСЂ
 	int incScore(int);
 	int decScore(int);
 public:

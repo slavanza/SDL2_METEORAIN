@@ -34,7 +34,6 @@ int main(int argc, char** argv)
 
 	cGameField game(0);
 	game.start(mainRnd);
-
 	system("pause");
 	SDL_DestroyRenderer(mainRnd);
 	SDL_DestroyWindow(mainWnd);

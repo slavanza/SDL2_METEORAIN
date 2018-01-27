@@ -4,10 +4,10 @@
 
 class cMovingGraphObj : public cGraphObj
 {
-	int iSpeed; // скорость
-	int xSpeed, ySpeed; // скорости по x и y осям
-	double angle; // угол поворота изображения
-	SDL_Point dest; // конечная точка
+	int iSpeed; // СЃРєРѕСЂРѕСЃС‚СЊ
+	int xSpeed, ySpeed; // СЃРєРѕСЂРѕСЃС‚Рё РїРѕ x Рё y РѕСЃСЏРј
+	double angle; // СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+	SDL_Point dest; // РєРѕРЅРµС‡РЅР°СЏ С‚РѕС‡РєР°
 public:
 	cMovingGraphObj(char*, int);
 	cMovingGraphObj(char*, int, int, int);

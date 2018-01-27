@@ -4,6 +4,7 @@
 #include "cObjList.h"
 #include "cMovingObjList.h"
 #include "cGameResult.h"
+#include "cTextObj.h"
 //#include "cPlayer.h"
 
 class cGameField : public cGame
@@ -17,7 +18,7 @@ class cGameField : public cGame
 public:
 	cGameField(int);
 	~cGameField();
-	cGameResult start(SDL_Renderer*); // на вход скорее всего будет приниматься структура 'игрок'; SDL_Renderer - временный параметр
+	cGameResult start(SDL_Renderer*); // РЅР° РІС…РѕРґ СЃРєРѕСЂРµРµ РІСЃРµРіРѕ Р±СѓРґРµС‚ РїСЂРёРЅРёРјР°С‚СЊСЃСЏ СЃС‚СЂСѓРєС‚СѓСЂР° 'РёРіСЂРѕРє'; SDL_Renderer - РІСЂРµРјРµРЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ
 	void draw(SDL_Renderer*);
 	friend Uint32 gen(Uint32, void*);
 };

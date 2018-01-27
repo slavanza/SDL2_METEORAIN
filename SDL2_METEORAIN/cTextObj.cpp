@@ -19,9 +19,8 @@ cTextObj::cTextObj(char* szFont, int iSizeInput, char* szText) : cGraphObj("defa
 	color.r = color.g = color.b = color.a = 255;
 	lpText = new char[strlen(szText) + 1];
 	lpFont = new char[strlen(szFont) + 1];
-	lpText[strlen(szText)] = lpFont[strlen(szFont)] = 0;
-	strcpy_s(lpText, strlen(szText), szText);
-	strcpy_s(lpFont, strlen(szFont), szFont);
+	strcpy_s(lpText, strlen(szText) + 1, szText);
+	strcpy_s(lpFont, strlen(szFont) + 1, szFont);
 	render();
 }
 
@@ -31,9 +30,8 @@ cTextObj::cTextObj(char* szFont, int iSizeInput, char* szText, int x, int y) : c
 	color.r = color.g = color.b = color.a = 255;
 	lpText = new char[strlen(szText) + 1];
 	lpFont = new char[strlen(szFont) + 1];
-	lpText[strlen(szText)] = lpFont[strlen(szFont)] = 0;
-	strcpy_s(lpText, strlen(szText), szText);
-	strcpy_s(lpFont, strlen(szFont), szFont);
+	strcpy_s(lpText, strlen(szText) + 1, szText);
+	strcpy_s(lpFont, strlen(szFont) + 1, szFont);
 	render();
 }
 
@@ -71,8 +69,7 @@ void cTextObj::setText(char* szText)
 {
 	delete[] lpText;
 	lpText = new char[strlen(szText) + 1];
-	lpText[strlen(szText)] = 0;
-	strcpy_s(lpText, strlen(szText), szText);
+	strcpy_s(lpText, strlen(szText) + 1, szText);
 	render();
 }
 
@@ -80,7 +77,6 @@ void cTextObj::setFont(char* szFont)
 {
 	delete[] lpFont;
 	lpFont = new char[strlen(szFont) + 1];
-	lpFont[strlen(szFont)] = 0;
-	strcpy_s(lpFont, strlen(szFont), szFont);
+	strcpy_s(lpFont, strlen(szFont) + 1, szFont);
 	render();
 }

@@ -47,10 +47,12 @@ cGameField::cGameField(int iLevelInput):background("Textures/Background.jpg")
 	iLevel = iLevelInput;
 	cGraphObj house("Textures/House.png");
 	cGraphObj meteorite("Textures/Meteorite.png");
-	int iPos = (640 - house.getRect().w - meteorite.getRect().w / 2) / (4 + iLevel);
-	for (int i = 4 + iLevel; i >= 0; i--)
+	int iPos = (640 - house.getRect().w) / (5 + iLevel);
+	while (iPos >= (house.getRect().w + meteorite.getRect().w))
+		iPos--;
+	for (int i = 0; i < (5 + iLevel); i++)
 	{
-		house.setPos(meteorite.getRect().w / 4 + i * iPos, 400);
+		house.setPos((640 % iPos) / 1.5 + i * iPos, 400);
 		objList.add(house);
 	}
 }

@@ -80,3 +80,16 @@ void cTextObj::setFont(char* szFont)
 	strcpy_s(lpFont, strlen(szFont) + 1, szFont);
 	render();
 }
+
+char* cTextObj::getText()
+{
+	return lpText;
+}
+int cTextObj::getSize()
+{
+	return iSize;
+}
+SDL_Color cTextObj::getColor()
+{
+	return color;
+}

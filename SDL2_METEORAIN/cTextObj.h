@@ -19,4 +19,7 @@ public:
 	void setSize(int);
 	void setText(char*);
 	void setFont(char*);
+	char* getText();
+	int getSize();
+	SDL_Color getColor();
 };

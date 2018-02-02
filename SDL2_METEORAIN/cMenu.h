@@ -9,7 +9,7 @@ class cMenu
 	cGraphObj background;
 	int check(SDL_Point);
 public:
-	cMenu(char*, int, ...);
+	cMenu(int, ...);
 	~cMenu();
 	void draw(SDL_Renderer*);
 	int choose(SDL_Renderer*);

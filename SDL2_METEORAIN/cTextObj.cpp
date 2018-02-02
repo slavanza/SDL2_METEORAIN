@@ -4,6 +4,8 @@
 
 void cTextObj::render()
 {
+	if ((iSize <= 0) || (lpFont == nullptr) || (lpText == nullptr))
+		return;
 	TTF_Font* lpFnt = TTF_OpenFont(lpFont, iSize);
 	if (lpSurface)
 		SDL_FreeSurface(lpSurface);
@@ -11,6 +13,13 @@ void cTextObj::render()
 	TTF_CloseFont(lpFnt);
 	rect.h = lpSurface->h;
 	rect.w = lpSurface->w;
+}
+
+cTextObj::cTextObj()
+{
+	iSize = 0;
+	color.r = color.g = color.b = color.a = 255;
+	lpText = lpFont = nullptr;
 }
 
 cTextObj::cTextObj(char* szFont, int iSizeInput, char* szText) : cGraphObj("default")

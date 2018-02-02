@@ -14,12 +14,13 @@ int cMenu::check(SDL_Point point)
 	return -1;
 }
 
-cMenu::cMenu(char* szBackground, int iCountInput, ...) : background("default")
+cMenu::cMenu(int iCountInput, ...) : background("default")
 {
-	background.changeImg(szBackground);
+	background.changeImg("Textures/Menu.jpg");
 	iCount = iCountInput;
 	char** lpText = new char*[iCount];
 	char* lpPtr = (char*)&iCountInput + sizeof(int);
+	int iMaxLen = 0;
 	for (int i = 0; i < iCount; i++)
 	{
 		int iLen = 0;
@@ -29,9 +30,18 @@ cMenu::cMenu(char* szBackground, int iCountInput, ...) : background("default")
 		}
 		lpText[i] = new char[iLen + 1];
 		strcpy_s(lpText[i], iLen + 1, lpPtr - iLen);
+		if (iLen > iMaxLen)
+			iMaxLen = iLen;
 	}
 
-	// [TODO] : Сделать заполнение объектов и их размещение
+	lpArr = new cTextObj[iCount];
+	for (int i = 0; i < iCount; i++)
+	{
+		lpArr[i].setFont("a_AlternaSw.ttf");
+		lpArr[i].setSize(40);
+		lpArr[i].setText(lpText[i]);
+		lpArr[i].setPos(320 - iMaxLen * 20, 240 + (i - iCount / 2) * 20); // масштабирование по высоте и ширине
+	}
 
 	for (int i = 0; i < iCount; i++)
 		delete[] lpText[i];
@@ -58,7 +68,7 @@ void cMenu::draw(SDL_Renderer* lpRenderer)
 int cMenu::choose(SDL_Renderer* lpRenderer)
 {
 	bool bFlag = false;
-
+	// [TODO] : Сделать пункты меню перемещающимися или "убегающими"
 	SDL_Event event;
 	SDL_Point click;
 	int iResult = -1;

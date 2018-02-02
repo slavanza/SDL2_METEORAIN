@@ -3,12 +3,19 @@
 
 #define PI 3.14159265
 
+cMovingGraphObj::cMovingGraphObj()
+{
+	iSpeed = xSpeed = ySpeed = 0;
+	angle = 0;
+	dest.x = dest.y = rect.x = rect.y = 0;
+}
+
 cMovingGraphObj::cMovingGraphObj(char* szName, int iSpeedInput):cGraphObj(szName)
 {
 	iSpeed = iSpeedInput;
+	xSpeed = ySpeed = sqrt(iSpeed);
 	dest.x = rect.x;
 	dest.y = rect.y;
-	iSpeed = xSpeed = ySpeed = 0;
 	angle = 0;
 }
 
@@ -17,7 +24,6 @@ cMovingGraphObj::cMovingGraphObj(char* szName, int iSpeedInput, int x, int y) : 
 	iSpeed = iSpeedInput;
 	dest.x = rect.x;
 	dest.y = rect.y;
-	iSpeed = xSpeed = ySpeed = 0;
 	angle = 0;
 }
 

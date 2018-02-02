@@ -2,6 +2,11 @@
 #include <SDL_image.h>
 #include <iostream>
 
+cGraphObj::cGraphObj()
+{
+	lpSurface = nullptr;
+	rect.x = rect.y = rect.w = rect.h = 0;
+}
 
 cGraphObj::cGraphObj(char* szName)
 {

@@ -11,6 +11,7 @@ class cTextObj : public cGraphObj
 	SDL_Color color;
 	void render();
 public:
+	cTextObj();
 	cTextObj(char*, int, char*);
 	cTextObj(char*, int, char*, int, int);
 	~cTextObj();

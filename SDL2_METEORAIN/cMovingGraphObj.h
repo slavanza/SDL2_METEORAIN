@@ -9,6 +9,7 @@ class cMovingGraphObj : public cGraphObj
 	double angle; // угол поворота изображения
 	SDL_Point dest; // конечная точка
 public:
+	cMovingGraphObj();
 	cMovingGraphObj(char*, int);
 	cMovingGraphObj(char*, int, int, int);
 	cMovingGraphObj(char*, int, int, int, int, int);

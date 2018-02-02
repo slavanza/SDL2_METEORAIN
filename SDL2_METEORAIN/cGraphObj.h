@@ -8,6 +8,7 @@ protected:
 	SDL_Surface * lpSurface;
 	SDL_Rect rect;
 public:
+	cGraphObj();
 	cGraphObj(char*);
 	cGraphObj(char*, int, int);
 	cGraphObj(const cGraphObj&);

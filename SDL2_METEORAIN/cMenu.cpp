@@ -1,5 +1,7 @@
 #include "cMenu.h"
 #include <cstring>
+#include <random>
+#include <ctime>
 
 
 int cMenu::check(SDL_Point point)
@@ -14,22 +16,51 @@ int cMenu::check(SDL_Point point)
 	return -1;
 }
 
-cMenu::cMenu(int iCountInput, ...) : background("default")
+void cMenu::move(int* lpX)
 {
-	background.changeImg("Textures/Menu.jpg");
+	int xSpeed = 1;
+	static int t = 0;
+	if(!t)
+	for (int i = 0; i < iCount; i++)
+	{
+		if (lpX[i] > lpArr[i].getRect().x)
+		{
+			if ((lpArr[i].getRect().x + xSpeed) > lpX[i])
+				lpArr[i].setPos(lpX[i], lpArr[i].getRect().y);
+			else
+				lpArr[i].setPos(lpArr[i].getRect().x + xSpeed, lpArr[i].getRect().y);
+		}
+		else
+		{
+			if ((lpArr[i].getRect().x - xSpeed) < lpX[i])
+				lpArr[i].setPos(lpX[i], lpArr[i].getRect().y);
+			else
+				lpArr[i].setPos(lpArr[i].getRect().x - xSpeed, lpArr[i].getRect().y);
+		}
+		if (lpX[i] == lpArr[i].getRect().x)
+			lpX[i] = rand() % (630 - lpArr[i].getSize() / 2 * strlen(lpArr[i].getText())) + 10;
+	}
+	++t %= 5;
+}
+
+cMenu::cMenu(int iCountInput, char* lpStr, ...) : background("default")
+{
+	background.setImg("Textures/Menu.jpg");
 	iCount = iCountInput;
 	char** lpText = new char*[iCount];
-	char* lpPtr = (char*)&iCountInput + sizeof(int);
+	char** lpPtr = &lpStr;
 	int iMaxLen = 0;
 	for (int i = 0; i < iCount; i++)
 	{
 		int iLen = 0;
-		while (*lpPtr != '\0')
+		while (**lpPtr != 0)
 		{
 			iLen++;
+			(*lpPtr)++;
 		}
 		lpText[i] = new char[iLen + 1];
-		strcpy_s(lpText[i], iLen + 1, lpPtr - iLen);
+		strcpy_s(lpText[i], iLen + 1, *lpPtr - iLen);
+		lpPtr++;
 		if (iLen > iMaxLen)
 			iMaxLen = iLen;
 	}
@@ -40,7 +71,7 @@ cMenu::cMenu(int iCountInput, ...) : background("default")
 		lpArr[i].setFont("a_AlternaSw.ttf");
 		lpArr[i].setSize(40);
 		lpArr[i].setText(lpText[i]);
-		lpArr[i].setPos(320 - iMaxLen * 20, 240 + (i - iCount / 2) * 20); // масштабирование по высоте и ширине
+		lpArr[i].setPos(320 - iMaxLen * lpArr[i].getSize() / 2, 240 + (i - iCount / 2) * lpArr[i].getSize()); // масштабирование по высоте и ширине
 	}
 
 	for (int i = 0; i < iCount; i++)
@@ -72,8 +103,15 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 	SDL_Event event;
 	SDL_Point click;
 	int iResult = -1;
+	int* x = new int[iCount];
+	srand(time(0));
+	for (int i = 0; i < iCount; i++)
+	{
+		x[i] = rand() % (630 - lpArr[i].getSize() / 2 * strlen(lpArr[i].getText())) + 10;
+	}
 	while (!bFlag)
 	{
+		draw(lpRenderer);
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_QUIT)
@@ -97,10 +135,12 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 				}
 			}
 		}
+		move(x);
 		if (iResult >= 0)
 		{
 			bFlag = true;
 		}
 	}
+	delete[] x;
 	return iResult;
 }

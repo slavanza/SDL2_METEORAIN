@@ -8,8 +8,9 @@ class cMenu
 	cTextObj* lpArr;
 	cGraphObj background;
 	int check(SDL_Point);
+	void move(int*);
 public:
-	cMenu(int, ...);
+	cMenu(int, char*, ...);
 	~cMenu();
 	void draw(SDL_Renderer*);
 	int choose(SDL_Renderer*);

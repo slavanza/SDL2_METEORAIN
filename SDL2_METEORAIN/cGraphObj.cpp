@@ -94,6 +94,15 @@ cGraphObj cGraphObj::operator=(const cGraphObj& copy)
 	return *this;
 }
 
+void cGraphObj::setImg(char* szName)
+{
+	if (lpSurface)
+		SDL_FreeSurface(lpSurface);
+	lpSurface = IMG_Load(szName);
+	rect.w = lpSurface->w;
+	rect.h = lpSurface->h;
+}
+
 void cGraphObj::changeImg(char* szName)
 {
 	int w = rect.w, h = rect.h;

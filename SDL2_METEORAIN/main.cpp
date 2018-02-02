@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "cGameField.h"
+#include "cMenu.h"
 
 #undef main
 
@@ -32,12 +33,16 @@ int main(int argc, char** argv)
 	}
 
 
-	cGameField game(0);
-	game.start(mainRnd);
+	//cGameField game(0);
+	//game.start(mainRnd);
+	cMenu menu(2, "Play", "Exit");
+	menu.choose(mainRnd);
+	
 	system("pause");
 	SDL_DestroyRenderer(mainRnd);
 	SDL_DestroyWindow(mainWnd);
 	std::cout << "Applicaion ended" << std::endl;
+	QuitAll();
 	return 0;
 }
 

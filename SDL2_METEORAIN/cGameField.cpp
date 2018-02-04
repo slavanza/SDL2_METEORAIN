@@ -27,16 +27,34 @@ void cGameField::generate()
 		srand(time(0));
 		b = true;
 	}
-	int x = rand() % 590;
-	int n = -(iLevel / 2) + rand() % iLevel;
-	int iSpeed = iLevel / 2 + 1 + n;
+	int x;
+	if(objList.getLen() > 3)
+		x = rand() % 590;
+	else
+	{
+		int n = rand() % objList.getLen();
+		x = objList.get(n)->getRect().x + rand() % 80 - 40;
+	}
+	int iSpeed = 1 + rand() % iLevel;
 	cMovingGraphObj meteorite("Textures/Meteorite.png", iSpeed, x, -100, x, 400);
 	movingObjList.add(meteorite);
 }
 
 Uint32 gen(Uint32 interval, void* vParam)
 {
+	static unsigned time = 0;
+	if(time == 0)
+		time = ((cGameField*)vParam)->getTime();
 	((cGameField*)vParam)->generate();
+	if (interval > 1000)
+	{
+		if ((time - ((cGameField*)vParam)->getTime()) % 1000 >= 10)
+		{
+			interval -= 250;
+			time = ((cGameField*)vParam)->getTime();
+		}
+
+	}
 	return interval;
 }
 
@@ -64,7 +82,7 @@ cGameField::~cGameField()
 
 cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 {
-	SDL_TimerID generate_timer = SDL_AddTimer(2000, gen, this);
+	SDL_TimerID generate_timer = SDL_AddTimer(4000, gen, this);
 	int iScore = 0;
 
 	SDL_Event event;

@@ -112,19 +112,37 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 		draw(lpRenderer);
 		while (SDL_PollEvent(&event))
 		{
-			if (event.type == SDL_QUIT)
+			switch (event.type)
 			{
-				bFlag = true;
-			}
-			if (event.type == SDL_KEYDOWN)
-			{
+			case SDL_QUIT:
+				exit(0);
+				break;
+			case SDL_KEYDOWN:
 				if (event.key.keysym.sym == SDLK_ESCAPE)
 				{
 					bFlag = true;
 				}
-			}
-			if (event.type == SDL_MOUSEBUTTONDOWN)
+				break;
+			case SDL_MOUSEMOTION:
 			{
+				SDL_Point move;
+				move.x = event.motion.x;
+				move.y = event.motion.y;
+				int n = check(move);
+				for (int i = 0; i < iCount; i++)
+				{
+					if (i != n)
+					{
+						lpArr[i].setColor();
+					}
+					else
+					{
+						lpArr[i].setColor(128, 128, 128);
+					}
+				}
+			}
+				break;
+			case SDL_MOUSEBUTTONDOWN:
 				if (event.button.button == SDL_BUTTON_LEFT)
 				{
 					click.x = event.button.x;

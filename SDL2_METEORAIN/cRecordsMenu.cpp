@@ -113,6 +113,18 @@ void cRecordsMenu::choose(SDL_Renderer* lpRenderer)
 			case SDL_QUIT:
 				exit(0);
 				break;
+			case SDL_MOUSEMOTION:
+			{
+				SDL_Point move;
+				move.x = event.motion.x;
+				move.y = event.motion.y;
+				int n = check(move);
+				if (n)
+				{
+					lpArr->setColor(128, 128, 128);
+				}
+			}
+				break;
 			case SDL_MOUSEBUTTONDOWN:
 				if (event.button.button == SDL_BUTTON_LEFT)
 				{

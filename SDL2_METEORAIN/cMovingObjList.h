@@ -22,5 +22,6 @@ public:
 	void show(SDL_Renderer*);
 	bool move();
 	bool isEmpty();
+	int getLen();
 };
 

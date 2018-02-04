@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 
 	//cGameField game(0);
 	//game.start(mainRnd);
-	cMenu menu(2, "Play", "Exit");
+	cMenu menu(2, "Играть", "Выход");
 	menu.choose(mainRnd);
 	
 	system("pause");

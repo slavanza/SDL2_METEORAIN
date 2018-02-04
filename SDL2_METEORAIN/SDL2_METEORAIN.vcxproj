@@ -126,6 +126,7 @@
     <ClCompile Include="cMovingObjList.cpp" />
     <ClCompile Include="cObjList.cpp" />
     <ClCompile Include="cPlayer.cpp" />
+    <ClCompile Include="cRecords.cpp" />
     <ClCompile Include="cTextObj.cpp" />
     <ClCompile Include="cTimer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="cMovingObjList.h" />
     <ClInclude Include="cObjList.h" />
     <ClInclude Include="cPlayer.h" />
+    <ClInclude Include="cRecords.h" />
     <ClInclude Include="cTextObj.h" />
     <ClInclude Include="cTimer.h" />
     <ClInclude Include="stdafx.h" />

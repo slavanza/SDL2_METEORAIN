@@ -172,3 +172,17 @@ bool cMovingObjList::isEmpty()
 {
 	return lpFront == nullptr;
 }
+
+int cMovingObjList::getLen()
+{
+	if (lpFront == nullptr)
+		return 0;
+	int iCount = 0;
+	cMovingObjPage* temp = lpFront;
+	while(temp)
+	{
+		iCount++;
+		temp = temp->lpNext;
+	}
+	return iCount;
+}

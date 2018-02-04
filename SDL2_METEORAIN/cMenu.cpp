@@ -71,7 +71,7 @@ cMenu::cMenu(int iCountInput, char* lpStr, ...) : background("default")
 		lpArr[i].setFont("a_AlternaSw.ttf");
 		lpArr[i].setSize(40);
 		lpArr[i].setText(lpText[i]);
-		lpArr[i].setPos(320 - iMaxLen * lpArr[i].getSize() / 2, 240 + (i - iCount / 2) * lpArr[i].getSize()); // масштабирование по высоте и ширине
+		lpArr[i].setPos(320 - iMaxLen * lpArr[i].getSize() / 2, 240 + (i - iCount / 2) * lpArr[i].getSize()); // РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ РїРѕ РІС‹СЃРѕС‚Рµ Рё С€РёСЂРёРЅРµ
 	}
 
 	for (int i = 0; i < iCount; i++)
@@ -99,7 +99,7 @@ void cMenu::draw(SDL_Renderer* lpRenderer)
 int cMenu::choose(SDL_Renderer* lpRenderer)
 {
 	bool bFlag = false;
-	// [TODO] : Сделать пункты меню перемещающимися или "убегающими"
+	// [TODO] : РЎРґРµР»Р°С‚СЊ РїСѓРЅРєС‚С‹ РјРµРЅСЋ РїРµСЂРµРјРµС‰Р°СЋС‰РёРјРёСЃСЏ РёР»Рё "СѓР±РµРіР°СЋС‰РёРјРё"
 	SDL_Event event;
 	SDL_Point click;
 	int iResult = -1;

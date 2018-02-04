@@ -134,3 +134,17 @@ bool cObjList::isEmpty()
 {
 	return (lpFront == nullptr);
 }
+
+int cObjList::getLen()
+{
+	if (lpFront == nullptr)
+		return 0;
+	int iCount = 0;
+	cObjPage* temp = lpFront;
+	while(temp)
+	{
+		iCount++;
+		temp = temp->lpNext;
+	}
+	return iCount;
+}

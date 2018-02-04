@@ -33,10 +33,8 @@ int main(int argc, char** argv)
 	}
 
 
-	//cGameField game(0);
-	//game.start(mainRnd);
-	cMenu menu(2, "Играть", "Выход");
-	menu.choose(mainRnd);
+	cGameField game(0);
+	game.start(mainRnd);
 	
 	system("pause");
 	SDL_DestroyRenderer(mainRnd);

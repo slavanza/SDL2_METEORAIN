@@ -43,9 +43,8 @@ void cMenu::move(int* lpX)
 	++t %= 5;
 }
 
-cMenu::cMenu(int iCountInput, char* lpStr, ...) : background("default")
+cMenu::cMenu(int iCountInput, char* lpStr, ...) : background("Textures/Menu.jpg")
 {
-	background.setImg("Textures/Menu.jpg");
 	iCount = iCountInput;
 	char** lpText = new char*[iCount];
 	char** lpPtr = &lpStr;

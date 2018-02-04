@@ -10,6 +10,7 @@ public:
 	~cTimer();
 	Uint32 getTime();
 	Uint32 resetTime();
+	char* toStr(char*);
 };
 
 void formatTime(Uint32, unsigned&, unsigned&);

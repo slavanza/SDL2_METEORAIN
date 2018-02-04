@@ -46,19 +46,33 @@ int cMovingObjList::remove(SDL_Rect rect)
 	if (lpFront)
 	{
 		cMovingObjPage* temp = lpFront;
-		while (temp->lpNext)
+		while (temp)
 		{
+			bool bMoving = false;
 			if (SDL_HasIntersection(&rect, &(temp->data.getRect())))
 			{
-				cMovingObjPage* _temp = lpFront;
-				while (_temp->lpNext != temp)
+				bMoving = temp->data.isMoving();
+				if (bMoving)
+					iCount += 2;
+				else
+					iCount++;
+				if (temp != lpFront)
 				{
-					_temp = _temp->lpNext;
+					cMovingObjPage* _temp = lpFront;
+					while (_temp->lpNext != temp)
+					{
+						_temp = _temp->lpNext;
+					}
+					cMovingObjPage* buf = temp->lpNext;
+					delete temp;
+					_temp->lpNext = buf;
 				}
-				cMovingObjPage* buf = temp->lpNext;
-				delete temp;
-				_temp->lpNext = buf;
-				iCount++;
+				else
+				{
+					lpFront = lpFront->lpNext;
+					delete temp;
+					temp->lpNext = lpFront;
+				}
 			}
 			temp = temp->lpNext;
 		}
@@ -76,6 +90,10 @@ int cMovingObjList::remove(SDL_Point point)
 		if (SDL_EnclosePoints(&point, 1, &(temp->data.getRect()), NULL))
 		{
 			bMoving = temp->data.isMoving();
+			if (bMoving)
+				iCount += 2;
+			else
+				iCount++;
 			cMovingObjPage *_temp = lpFront;
 			if (_temp == temp)
 			{
@@ -93,10 +111,6 @@ int cMovingObjList::remove(SDL_Point point)
 				delete temp;
 				temp = _temp;
 			}
-			if (bMoving)
-				iCount += 2;
-			else
-				iCount++;
 		}
 		temp = temp->lpNext;
 	}
@@ -125,7 +139,7 @@ int cMovingObjList::find(SDL_Rect rect)
 	if (lpFront)
 	{
 		cMovingObjPage* temp = lpFront;
-		while (temp->lpNext)
+		while (temp)
 		{
 			if (SDL_HasIntersection(&rect, &(temp->data.getRect())))
 			{
@@ -142,7 +156,7 @@ void cMovingObjList::show(SDL_Renderer* lpRenderer)
 	if (lpFront)
 	{
 		cMovingObjPage* temp = lpFront;
-		while (temp->lpNext)
+		while (temp)
 		{
 			temp->data.paint(lpRenderer);
 			temp = temp->lpNext;
@@ -156,7 +170,7 @@ bool cMovingObjList::move() // необходимо сделать чтобы т
 	if (lpFront)
 	{
 		cMovingObjPage* temp = lpFront;
-		while (temp->lpNext)
+		while (temp)
 		{
 			if (!(temp->data.move()))
 				temp->data.changeImg("Textures/Fallen.png");

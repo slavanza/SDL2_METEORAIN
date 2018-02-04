@@ -2,8 +2,9 @@
 
 #include "cTextObj.h"
 #include "cRecords.h"
+#include "cMenu.h"
 
-class cRecordsMenu
+class cRecordsMenu : public cMenu
 {
 	cGraphObj background;
 	cTextObj title;
@@ -13,11 +14,10 @@ class cRecordsMenu
 	cTextObj levels[10];
 	cTextObj times[10];
 	cTextObj scores[10];
-	cTextObj tip;
 public:
 	cRecordsMenu();
 	~cRecordsMenu();
 	void draw(SDL_Renderer*);
-	void show(SDL_Renderer*);
+	void choose(SDL_Renderer*);
 };
 

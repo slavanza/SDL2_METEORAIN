@@ -4,6 +4,7 @@
 
 class cMenu
 {
+protected:
 	int iCount;
 	cTextObj* lpArr;
 	cGraphObj background;

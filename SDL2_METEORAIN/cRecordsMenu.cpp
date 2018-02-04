@@ -22,7 +22,7 @@ char* toStr(char* lpStr, unsigned uTime)
 }
 
 
-cRecordsMenu::cRecordsMenu() : background("Textures/Menu.jpg"), title("a_AlternaSw.ttf", 40, "Records"), tip("a_AlternaSw.ttf", 40, "Нажмите ESC чтобы вернуться назад в меню")
+cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu.jpg"), title("a_AlternaSw.ttf", 40, "Records")
 {
 	title.setPos(320 - strlen(title.getText())* 25, 10);
 	records.load("records.bin");
@@ -32,13 +32,13 @@ cRecordsMenu::cRecordsMenu() : background("Textures/Menu.jpg"), title("a_Alterna
 		description[i].setFont("a_AlternaSw.ttf");
 		description[i].setColor(238, 221, 130);
 	}
-	description[0].setText("Name");
+	description[0].setText("Имя");
 	description[0].setPos(80, 80);
-	description[1].setText("Level");
+	description[1].setText("Уровень");
 	description[1].setPos(300, 80);
-	description[2].setText("Time");
+	description[2].setText("Время");
 	description[2].setPos(400, 80);
-	description[3].setText("Score");
+	description[3].setText("Очки");
 	description[3].setPos(500, 80);
 
 	for (int i = 0; i < 10; i++)
@@ -69,7 +69,7 @@ cRecordsMenu::cRecordsMenu() : background("Textures/Menu.jpg"), title("a_Alterna
 		scores[i].setText(score);
 		scores[i].setPos(500, 240 + (i - 4) * 30);
 	}
-	tip.setPos(320 - strlen(tip.getText()) * 25, 420);
+	lpArr->setPos(320 - strlen(lpArr->getText()) * 20, 420);
 }
 
 
@@ -93,11 +93,11 @@ void cRecordsMenu::draw(SDL_Renderer* lpRenderer)
 		times[i].paint(lpRenderer);
 		scores[i].paint(lpRenderer);
 	}
-	tip.paint(lpRenderer);
+	lpArr->paint(lpRenderer);
 	SDL_RenderPresent(lpRenderer);
 }
 
-void cRecordsMenu::show(SDL_Renderer* lpRenderer)
+void cRecordsMenu::choose(SDL_Renderer* lpRenderer)
 {
 	bool bFlag = false;
 
@@ -113,9 +113,15 @@ void cRecordsMenu::show(SDL_Renderer* lpRenderer)
 			case SDL_QUIT:
 				exit(0);
 				break;
-			case SDL_KEYDOWN:
-				if (event.key.keysym.sym == SDLK_ESCAPE)
-					bFlag = true;
+			case SDL_MOUSEBUTTONDOWN:
+				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					SDL_Point click;
+					click.x = event.button.x;
+					click.y = event.button.y;
+					if (check(click) != -1)
+						bFlag = true;
+				}
 			}
 		}
 	}

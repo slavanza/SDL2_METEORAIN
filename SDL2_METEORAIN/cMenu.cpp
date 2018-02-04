@@ -98,7 +98,6 @@ void cMenu::draw(SDL_Renderer* lpRenderer)
 int cMenu::choose(SDL_Renderer* lpRenderer)
 {
 	bool bFlag = false;
-	// [TODO] : Сделать пункты меню перемещающимися или "убегающими"
 	SDL_Event event;
 	SDL_Point click;
 	int iResult = -1;

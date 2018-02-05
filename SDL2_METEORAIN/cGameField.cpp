@@ -35,7 +35,7 @@ void cGameField::generate()
 		int n = rand() % objList.getLen();
 		x = objList.get(n)->getRect().x + rand() % 80 - 40;
 	}
-	int iSpeed = 1 + rand() % iLevel;
+	int iSpeed = 1 + rand() % (iLevel + 1);
 	cMovingGraphObj meteorite("Textures/Meteorite.png", iSpeed, x, -100, x, 400);
 	movingObjList.add(meteorite);
 }
@@ -50,6 +50,7 @@ Uint32 gen(Uint32 interval, void* vParam)
 	{
 		if ((time - ((cGameField*)vParam)->getTime()) % 1000 >= 10)
 		{
+			((cGameField*)vParam)->iLevel++;
 			interval -= 250;
 			time = ((cGameField*)vParam)->getTime();
 		}
@@ -60,17 +61,15 @@ Uint32 gen(Uint32 interval, void* vParam)
 
 cGameField::cGameField(int iLevelInput):background("Textures/Background.jpg")
 {
-	if (iLevelInput <= 0)
-		iLevelInput = 1;
+	if (iLevelInput < 0)
+		iLevelInput = 0;
 	iLevel = iLevelInput;
 	cGraphObj house("Textures/House.png");
 	cGraphObj meteorite("Textures/Meteorite.png");
 	int iPos = (640 - house.getRect().w) / (5 + iLevel);
-	while (iPos >= (house.getRect().w + meteorite.getRect().w))
-		iPos--;
 	for (int i = 0; i < (5 + iLevel); i++)
 	{
-		house.setPos((640 % iPos) / 1.5 + i * iPos, 400);
+		house.setPos(iPos / 2 + i * iPos, 400);
 		objList.add(house);
 	}
 }

@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 	}
 
 
-	cGameField game(0);
+	cGameField game(7);
 	game.start(mainRnd);
 	
 	system("pause");

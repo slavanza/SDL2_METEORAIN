@@ -50,10 +50,13 @@ cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu
 
 		levels[i].setSize(30);
 		levels[i].setFont("a_AlternaSw.ttf");
-		char level[2] = "";
+		char level[3] = "";
 		sprintf_s(level, "%d", records.get(i).getMaxLevel());
 		levels[i].setText(level);
-		levels[i].setPos(300, 240 + (i - 4) * 30);
+		if(strlen(level) == 2)
+			levels[i].setPos(330, 240 + (i - 4) * 30);
+		else
+			levels[i].setPos(300, 240 + (i - 4) * 30);
 
 		times[i].setSize(30);
 		times[i].setFont("a_AlternaSw.ttf");

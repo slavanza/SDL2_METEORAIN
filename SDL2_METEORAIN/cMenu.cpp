@@ -70,7 +70,7 @@ cMenu::cMenu(int iCountInput, char* lpStr, ...) : background("Textures/Menu.jpg"
 		lpArr[i].setFont("a_AlternaSw.ttf");
 		lpArr[i].setSize(40);
 		lpArr[i].setText(lpText[i]);
-		lpArr[i].setPos(320 - iMaxLen * lpArr[i].getSize() / 2, 240 + (i - iCount / 2) * lpArr[i].getSize()); // масштабирование по высоте и ширине
+		lpArr[i].setPos(320 - iMaxLen * lpArr[i].getSize() / 4, 240 + (i - iCount / 2) * lpArr[i].getSize()); // масштабирование по высоте и ширине
 	}
 
 	for (int i = 0; i < iCount; i++)
@@ -86,7 +86,6 @@ cMenu::~cMenu()
 
 void cMenu::draw(SDL_Renderer* lpRenderer)
 {
-	SDL_RenderClear(lpRenderer);
 	background.paint(lpRenderer);
 	for (int i = 0; i < iCount; i++)
 	{
@@ -110,6 +109,20 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 	while (!bFlag)
 	{
 		draw(lpRenderer);
+		SDL_Point cur;
+		SDL_GetMouseState(&cur.x, &cur.y);
+		int n = check(cur);
+		for (int i = 0; i < iCount; i++)
+		{
+			if (i != n)
+			{
+				lpArr[i].setColor();
+			}
+			else
+			{
+				lpArr[i].setColor(128, 128, 128);
+			}
+		}
 		while (SDL_PollEvent(&event))
 		{
 			switch (event.type)
@@ -122,25 +135,6 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 				{
 					bFlag = true;
 				}
-				break;
-			case SDL_MOUSEMOTION:
-			{
-				SDL_Point move;
-				move.x = event.motion.x;
-				move.y = event.motion.y;
-				int n = check(move);
-				for (int i = 0; i < iCount; i++)
-				{
-					if (i != n)
-					{
-						lpArr[i].setColor();
-					}
-					else
-					{
-						lpArr[i].setColor(128, 128, 128);
-					}
-				}
-			}
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 				if (event.button.button == SDL_BUTTON_LEFT)

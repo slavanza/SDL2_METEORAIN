@@ -2,6 +2,7 @@
 #include <random>
 #include <ctime>
 #include <SDL_timer.h>
+#include <iostream>
 int cGameField::compare()
 {
 	cMovingGraphObj* lpCur = movingObjList.get(0);
@@ -35,7 +36,7 @@ void cGameField::generate()
 		int n = rand() % objList.getLen();
 		x = objList.get(n)->getRect().x + rand() % 80 - 40;
 	}
-	int iSpeed = 1 + rand() % (iLevel + 1);
+	int iSpeed = 1 + rand() % (iLevel + 1) / 2;
 	cMovingGraphObj meteorite("Textures/Meteorite.png", iSpeed, x, -100, x, 400);
 	movingObjList.add(meteorite);
 }
@@ -82,7 +83,6 @@ cGameField::~cGameField()
 cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 {
 	SDL_TimerID generate_timer = SDL_AddTimer(4000, gen, this);
-	int iScore = 0;
 
 	SDL_Event event;
 	SDL_Point click;
@@ -118,11 +118,7 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 				}
 			}
 		}
-		int iDestroyed = compare();
-		if (iDestroyed)
-		{
-			decScore(iDestroyed);
-		}
+		compare(); // уничтожение
 		if (objList.isEmpty())
 		{
 			cTextObj loseMsg("a_AlternaSw.ttf", 40, "Игра окончена");
@@ -138,11 +134,13 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 			draw(lpRenderer);
 			loseMsg.paint(lpRenderer);
 			SDL_RenderPresent(lpRenderer);
+			SDL_Delay(1000);
 			bFlag = true;
 		}
 	}
 	SDL_RemoveTimer(generate_timer);
-	return cGameResult(iScore, timer.getTime(), iLevel, bPaused);
+	std::cout << "Total time: " << timer.getTime() << std::endl;
+	return cGameResult(getScore(), timer.getTime(), iLevel, bPaused);
 }
 
 void cGameField::draw(SDL_Renderer* lpRenderer)

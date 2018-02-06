@@ -1,5 +1,6 @@
 #include "cPlayer.h"
 #include <cstring>
+#include <iostream>
 
 
 cPlayer::cPlayer()
@@ -32,7 +33,7 @@ unsigned cPlayer::incMaxLevel(unsigned uInc)
 
 unsigned cPlayer::incTotalTime(unsigned uInc)
 {
-	uTotalTime += uInc / 1000;
+	uTotalTime += uInc;
 	return uTotalTime;
 }
 
@@ -61,6 +62,7 @@ const cPlayer& cPlayer::updateFromResult(cGameResult& input)
 	unsigned uResultScore = input.getScore();
 	unsigned uLevel = input.getLevel();
 	unsigned uTime = input.getTime();
+	std::cout << "Time: " << uTime << std::endl;
 	uTotalScore += uResultScore;
 	if (uMaxLevel < uLevel)
 	{

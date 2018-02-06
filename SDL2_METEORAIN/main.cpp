@@ -1,11 +1,10 @@
 #include "stdafx.h"
+#include "cMain.h"
+
 #include "cGameField.h"
-#include "cMenu.h"
+#include "cRecordsMenu.h"
 
 #undef main
-
-#define WIDTH 640
-#define HEIGHT 480
 
 bool bSDL_Init = false;
 bool bTTF_Init = false;
@@ -23,25 +22,12 @@ int main(int argc, char** argv)
 	InitAll();
 	atexit(QuitAll);
 
-	SDL_Window* mainWnd = nullptr;
-	SDL_Renderer* mainRnd = nullptr;
-
-	if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, SDL_WINDOW_SHOWN, &mainWnd, &mainRnd) < 0)
-	{
-		std::cout << "Window/Renderer creating error" << std::endl;
-		return -3;
-	}
-
-
-	cGameField game(7);
-	game.start(mainRnd);
+	cMain Game;
+	int iReturn = Game.main();
 	
-	system("pause");
-	SDL_DestroyRenderer(mainRnd);
-	SDL_DestroyWindow(mainWnd);
 	std::cout << "Applicaion ended" << std::endl;
 	QuitAll();
-	return 0;
+	return iReturn;
 }
 
 
@@ -66,7 +52,7 @@ void InitAll()
 	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) < 0)
 	{
 		std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
-		exit(-2);
+		exit(-3);
 	}
 	std::cout << "[ InitAll ] : IMG Initialized" << std::endl;
 	bIMG_Init = true;

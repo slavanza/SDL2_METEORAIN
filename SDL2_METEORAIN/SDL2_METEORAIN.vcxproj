@@ -117,7 +117,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cGame.cpp" />
     <ClCompile Include="cGameField.cpp" />
     <ClCompile Include="cGameResult.cpp" />
     <ClCompile Include="cGraphObj.cpp" />
@@ -135,7 +134,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cGame.h" />
     <ClInclude Include="cGameField.h" />
     <ClInclude Include="cGameResult.h" />
     <ClInclude Include="cGraphObj.h" />
@@ -151,9 +149,6 @@
     <ClInclude Include="cTextObj.h" />
     <ClInclude Include="cTimer.h" />
     <ClInclude Include="stdafx.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

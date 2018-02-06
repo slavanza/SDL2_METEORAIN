@@ -60,6 +60,20 @@ Uint32 gen(Uint32 interval, void* vParam)
 	return interval;
 }
 
+int cGameField::incScore(int iInc)
+{
+	iScore += iInc;
+	return iScore;
+}
+
+int cGameField::decScore(int iDec)
+{
+	iScore -= iDec;
+	if (iScore < 0)
+		iScore = 0;
+	return iScore;
+}
+
 cGameField::cGameField(int iLevelInput):background("Textures/Background.jpg")
 {
 	if (iLevelInput < 0)
@@ -78,6 +92,16 @@ cGameField::cGameField(int iLevelInput):background("Textures/Background.jpg")
 
 cGameField::~cGameField()
 {
+}
+
+int cGameField::getScore()
+{
+	return iScore;
+}
+
+Uint32 cGameField::getTime()
+{
+	return timer.getTime();
 }
 
 cGameResult cGameField::start(SDL_Renderer* lpRenderer)

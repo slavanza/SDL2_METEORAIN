@@ -147,6 +147,8 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 		{
 			cTextObj loseMsg("a_AlternaSw.ttf", 40, "Игра окончена");
 			loseMsg.setPos(320 - loseMsg.getRect().w / 2, 240 - loseMsg.getRect().h / 2);
+			cTextObj tip("a_AlternaSw.ttf", 30, "Для выхода нажмите любую клавишу");
+			tip.setPos(320 - tip.getRect().w / 2, 460 - tip.getRect().h);
 			SDL_RemoveTimer(generate_timer);
 			while (movingObjList.move())
 			{
@@ -158,8 +160,25 @@ cGameResult cGameField::start(SDL_Renderer* lpRenderer)
 			draw(lpRenderer);
 			loseMsg.paint(lpRenderer);
 			SDL_RenderPresent(lpRenderer);
-			SDL_Delay(1000);
-			bFlag = true;
+			SDL_Event event;
+			while (!bFlag)
+			{
+				while (SDL_PollEvent(&event))
+				{
+					if (event.type == SDL_QUIT)
+					{
+						bFlag = true;
+					}
+					if (event.type == SDL_KEYDOWN)
+					{
+						bFlag = true;
+					}
+					if (event.type == SDL_MOUSEBUTTONDOWN)
+					{
+						bFlag = true;
+					}
+				}
+			}
 		}
 	}
 	SDL_RemoveTimer(generate_timer);
@@ -173,5 +192,26 @@ void cGameField::draw(SDL_Renderer* lpRenderer)
 	background.paint(lpRenderer);
 	objList.show(lpRenderer);
 	movingObjList.show(lpRenderer);
+
+	char szTime[6];
+	char szScore[7];
+	_itoa_s(iScore, szScore, 10);
+	szScore[6] = '\0';
+	int iLen = strlen(szScore);
+	for (int j = 0; j < (6 - iLen); j++)
+	{
+			for (int i = 5; i > 0; i--)	
+				szScore[i] = szScore[i - 1];
+		szScore[j] = '0';
+	}
+	cTextObj score("a_AlternaSw.ttf", 35, szScore);
+	cTextObj time("a_AlternaSw.ttf", 40, timer.toStr(szTime));
+	score.setColor(238, 221, 130);
+	time.setColor(255, 64, 64);
+	score.setPos(320 - score.getRect().w / 2, 15 + time.getRect().h);
+	time.setPos(320 - time.getRect().w / 2, 10);
+	score.paint(lpRenderer);
+	time.paint(lpRenderer);
+
 	SDL_RenderPresent(lpRenderer);
 }

@@ -5,6 +5,7 @@
 class cMenu
 {
 protected:
+	cTextObj title;
 	int iCount;
 	cTextObj* lpArr;
 	cGraphObj background;
@@ -15,5 +16,6 @@ public:
 	~cMenu();
 	void draw(SDL_Renderer*);
 	int choose(SDL_Renderer*);
+	void setTitle(char*);
 };
 

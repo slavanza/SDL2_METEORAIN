@@ -1,5 +1,6 @@
 #include "cTimer.h"
 #include <cstdio>
+#include <cstring>
 
 
 cTimer::cTimer()
@@ -24,7 +25,7 @@ Uint32 cTimer::resetTime()
 	return uTime;
 }
 
-/** строка должна быть хотя бы 8 символов в длину */
+/** строка должна быть хотя бы 6 символов в длину */
 char* cTimer::toStr(char* lpStr) 
 {
 	unsigned uMin, uSec;
@@ -32,13 +33,28 @@ char* cTimer::toStr(char* lpStr)
 	char szMin[3], szSec[3];
 	sprintf_s(szMin, "%u", uMin);
 	sprintf_s(szSec, "%u", uSec);
-	for (int i = 0; i < 3; i++)
+	if (strlen(szMin) == 1)
 	{
-		lpStr[i] = szMin[i];
-		lpStr[i + 4] = szSec[i];
+		lpStr[0] = '0';
+		lpStr[1] = szMin[0];
 	}
-	lpStr[3] = ':';
-	lpStr[7] = '\0';
+	else
+	{
+		lpStr[0] = szMin[0];
+		lpStr[1] = szMin[1];
+	}
+	lpStr[2] = ':';
+	if (strlen(szSec) == 1)
+	{
+		lpStr[3] = '0';
+		lpStr[4] = szSec[0];
+	}
+	else
+	{
+		lpStr[3] = szSec[0];
+		lpStr[4] = szSec[1];
+	}
+	lpStr[5] = '\0';
 	return lpStr;
 }
 

@@ -15,14 +15,64 @@ bool cRecords::add(cPlayer & player)
 {
 	for (int i = 0; i < 10; i++)
 	{
-		if (player.getTotalScore() > records[i].getTotalScore())
+		if (player.getTotalScore() >= records[i].getTotalScore())
 		{
-			for (int j = 9; j > i; j--)
+			if (player.getTotalScore() == records[i].getTotalScore())
 			{
-				records[j] = records[j - 1];
+				if (player.getMaxLevel() >= records[i].getMaxLevel())
+				{
+					if (player.getMaxLevel() == records[i].getMaxLevel())
+					{
+						if (player.getTotalTime() >= records[i].getTotalTime())
+						{
+							if (player.getTotalTime() == records[i].getTotalTime())
+							{
+								if (i < 9)
+								{
+									for (int j = 9; j > (i + 1); j--)
+									{
+										records[j] = records[j - 1];
+									}
+									records[i + 1] = player;
+									return true;
+								}
+								else
+								{
+									records[9] = player;
+									return true;
+								}
+							}
+						}
+						else
+						{
+							for (int j = 9; j > i; j--)
+							{
+								records[j] = records[j - 1];
+							}
+							records[i] = player;
+							return true;
+						}
+					}
+					else
+					{
+						for (int j = 9; j > i; j--)
+						{
+							records[j] = records[j - 1];
+						}
+						records[i] = player;
+						return true;
+					}
+				}
 			}
-			records[i] = player;
-			return true;
+			else
+			{
+				for (int j = 9; j > i; j--)
+				{
+					records[j] = records[j - 1];
+				}
+				records[i] = player;
+				return true;
+			}
 		}
 	}
 	return false;

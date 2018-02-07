@@ -1,6 +1,7 @@
 #include "cMain.h"
 #include "cRecordsMenu.h"
 #include "cGameField.h"
+#include "cInput.h"
 #include <iostream>
 
 
@@ -23,6 +24,7 @@ int cMain::main()
 {
 	/// Основная функция всей игры
 	cMenu mainMenu(4, "Играть", "Рекорды", "Помощь", "Выход");
+	mainMenu.setTitle("Главное меню");
 	bool bFlag = false;
 	while(!bFlag)
 	switch (mainMenu.choose(lpRenderer))
@@ -30,6 +32,7 @@ int cMain::main()
 	case 0:
 	{
 		cMenu difficulty(4, "Легко", "Нормально", "Сложно", "Назад");
+		difficulty.setTitle("Выберите сложность");
 		int iStartLevel = difficulty.choose(lpRenderer);
 		if ((iStartLevel >= 0) && (iStartLevel < 3))
 		{
@@ -41,9 +44,11 @@ int cMain::main()
 				if (result.isPaused())
 				{
 					cMenu pause(2, "Продолжить", "Выход");
+					pause.setTitle("Меню паузы");
 					if (pause.choose(lpRenderer))
 					{
-						cPlayer player;
+						cInput input("Введите имя");
+						cPlayer player(input.input(lpRenderer));
 						player.updateFromResult(result);
 						cRecords records;
 						records.load("records.bin");
@@ -54,7 +59,8 @@ int cMain::main()
 				}
 				else
 				{
-					cPlayer player;
+					cInput input("Введите имя");
+					cPlayer player(input.input(lpRenderer));
 					player.updateFromResult(result);
 					cRecords records;
 					records.load("records.bin");

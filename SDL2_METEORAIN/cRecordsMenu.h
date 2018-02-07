@@ -7,7 +7,6 @@
 class cRecordsMenu : public cMenu
 {
 	cGraphObj background;
-	cTextObj title;
 	cRecords records;
 	cTextObj description[4];
 	cTextObj names[10];

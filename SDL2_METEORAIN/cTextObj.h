@@ -12,7 +12,7 @@ class cTextObj : public cGraphObj
 	void render();
 public:
 	cTextObj();
-	cTextObj(char*, int, char*);
+	cTextObj(char*, int, char* = nullptr);
 	cTextObj(char*, int, char*, int, int);
 	~cTextObj();
 	void changeImg(char*);

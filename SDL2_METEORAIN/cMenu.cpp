@@ -43,8 +43,9 @@ void cMenu::move(int* lpX)
 	++t %= 5;
 }
 
-cMenu::cMenu(int iCountInput, char* lpStr, ...) : background("Textures/Menu.jpg")
+cMenu::cMenu(int iCountInput, char* lpStr, ...) : background("Textures/Menu.jpg"), title("a_AlternaSw.ttf", 50)
 {
+	title.setColor(238, 221, 130);
 	iCount = iCountInput;
 	char** lpText = new char*[iCount];
 	char** lpPtr = &lpStr;
@@ -87,6 +88,7 @@ cMenu::~cMenu()
 void cMenu::draw(SDL_Renderer* lpRenderer)
 {
 	background.paint(lpRenderer);
+	title.paint(lpRenderer);
 	for (int i = 0; i < iCount; i++)
 	{
 		lpArr[i].paint(lpRenderer);
@@ -104,7 +106,7 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 	srand(time(0));
 	for (int i = 0; i < iCount; i++)
 	{
-		x[i] = rand() % (630 - lpArr[i].getSize() / 2 * strlen(lpArr[i].getText())) + 10;
+		x[i] = rand() % (630 - lpArr[i].getRect().w) + 10;
 	}
 	while (!bFlag)
 	{
@@ -153,4 +155,10 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 	}
 	delete[] x;
 	return iResult;
+}
+
+void cMenu::setTitle(char* szTitle)
+{
+	title.setText(szTitle);
+	title.setPos(320 - title.getRect().w / 2, 10);
 }

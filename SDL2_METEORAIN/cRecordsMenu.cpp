@@ -38,9 +38,9 @@ char* toStr(char* lpStr, unsigned uTime)
 }
 
 
-cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu.jpg"), title("a_AlternaSw.ttf", 40, "Records")
+cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu.jpg")
 {
-	title.setPos(320 - strlen(title.getText()) * title.getSize() / 4, 10);
+	setTitle("Рекорды");
 	records.load("records.bin");
 	for (int i = 0; i < 4; i++)
 	{
@@ -55,14 +55,14 @@ cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu
 	description[2].setText("Время");
 	description[2].setPos(400, 80);
 	description[3].setText("Очки");
-	description[3].setPos(560, 80);
+	description[3].setPos(550, 80);
 
 	for (int i = 0; i < 10; i++)
 	{
 		names[i].setSize(35);
 		names[i].setFont("a_AlternaSw.ttf");
 		names[i].setText(records.get(i).getName());
-		names[i].setPos(50, 240 + (i - 4) * 30);
+		names[i].setPos(50, 240 + (i - 4) * 32);
 
 		levels[i].setSize(35);
 		levels[i].setFont("a_AlternaSw.ttf");
@@ -70,25 +70,25 @@ cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu
 		sprintf_s(level, "%d", records.get(i).getMaxLevel());
 		levels[i].setText(level);
 		if(strlen(level) == 2)
-			levels[i].setPos(300, 240 + (i - 4) * 30);
+			levels[i].setPos(300, 240 + (i - 4) * 32);
 		else
-			levels[i].setPos(315, 240 + (i - 4) * 30);
+			levels[i].setPos(315, 240 + (i - 4) * 32);
 
 		times[i].setSize(35);
 		times[i].setFont("a_AlternaSw.ttf");
 		char time[10] = "";
 		toStr(time, records.get(i).getTotalTime());
 		times[i].setText(time);
-		times[i].setPos(410, 240 + (i - 4) * 30);
+		times[i].setPos(410, 240 + (i - 4) * 32);
 
 		scores[i].setSize(35);
 		scores[i].setFont("a_AlternaSw.ttf");
 		char score[10] = "";
 		sprintf_s(score, "%d", records.get(i).getTotalScore());
 		scores[i].setText(score);
-		scores[i].setPos(580, 240 + (i - 4) * 30);
+		scores[i].setPos(580, 240 + (i - 4) * 32);
 	}
-	lpArr->setPos(320 - strlen(lpArr->getText()) * lpArr->getSize() / 8, 430);
+	lpArr->setPos(320 - lpArr->getRect().w / 2, 430);
 }
 
 

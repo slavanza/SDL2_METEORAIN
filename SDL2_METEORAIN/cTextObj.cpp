@@ -26,9 +26,13 @@ cTextObj::cTextObj(char* szFont, int iSizeInput, char* szText) : cGraphObj("defa
 {
 	iSize = iSizeInput;
 	color.r = color.g = color.b = color.a = 255;
-	lpText = new char[strlen(szText) + 1];
+	if ((szText != nullptr) && strcmp(szText, ""))
+		lpText = new char[strlen(szText) + 1];
+	else
+		lpText = nullptr;
 	lpFont = new char[strlen(szFont) + 1];
-	strcpy_s(lpText, strlen(szText) + 1, szText);
+	if ((szText != nullptr) && strcmp(szText, ""))
+		strcpy_s(lpText, strlen(szText) + 1, szText);
 	strcpy_s(lpFont, strlen(szFont) + 1, szFont);
 	render();
 }

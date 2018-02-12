@@ -44,6 +44,7 @@ void cGameField::generate()
 Uint32 gen(Uint32 interval, void* vParam)
 {
 	static unsigned time = 0;
+	static int iL = -1;
 	if(time == 0)
 		time = ((cGameField*)vParam)->getTime();
 	((cGameField*)vParam)->generate();
@@ -51,7 +52,9 @@ Uint32 gen(Uint32 interval, void* vParam)
 	{
 		if ((time - ((cGameField*)vParam)->getTime()) % 1000 >= 10)
 		{
-			((cGameField*)vParam)->iLevel++;
+			++iL %= 2;
+			if(!iL)
+				((cGameField*)vParam)->iLevel++;
 			interval -= 250;
 			time = ((cGameField*)vParam)->getTime();
 		}
@@ -204,8 +207,8 @@ void cGameField::draw(SDL_Renderer* lpRenderer)
 				szScore[i] = szScore[i - 1];
 		szScore[j] = '0';
 	}
-	cTextObj score("a_AlternaSw.ttf", 35, szScore);
-	cTextObj time("a_AlternaSw.ttf", 40, timer.toStr(szTime));
+	cTextObj score("a_AlternaSw.ttf", 40, szScore);
+	cTextObj time("a_AlternaSw.ttf", 45, timer.toStr(szTime));
 	score.setColor(238, 221, 130);
 	time.setColor(255, 64, 64);
 	score.setPos(320 - score.getRect().w / 2, 15 + time.getRect().h);

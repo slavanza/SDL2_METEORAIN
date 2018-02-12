@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL2_METEORAIN", "SDL2_METEORAIN\SDL2_METEORAIN.vcxproj", "{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}"
 EndProject
@@ -13,8 +13,8 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}.Debug|x64.ActiveCfg = Debug|x64
-		{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}.Debug|x64.Build.0 = Debug|x64
+		{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}.Debug|x64.ActiveCfg = Debug|Win32
+		{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}.Debug|x64.Build.0 = Debug|Win32
 		{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}.Debug|x86.ActiveCfg = Debug|Win32
 		{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}.Debug|x86.Build.0 = Debug|Win32
 		{148E9F25-55F9-4C8E-BEC7-B5BF9EAC639D}.Release|x64.ActiveCfg = Release|x64

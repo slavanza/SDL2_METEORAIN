@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "cMain.h"
-
 #include "cGameField.h"
 #include "cRecordsMenu.h"
 

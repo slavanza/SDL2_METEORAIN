@@ -4,7 +4,7 @@
 
 class cPlayer
 {
-	char szName[20];
+	char szName[21];
 	unsigned uMaxLevel;
 	unsigned uTotalScore;
 	unsigned uTotalTime;

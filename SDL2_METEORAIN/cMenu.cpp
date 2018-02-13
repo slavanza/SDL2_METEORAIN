@@ -108,8 +108,37 @@ int cMenu::choose(SDL_Renderer* lpRenderer)
 	{
 		x[i] = rand() % (630 - lpArr[i].getRect().w) + 10;
 	}
+	static int a = -1;
+	static unsigned r = rand() % 256, g = rand() % 256, b = rand() % 256;
 	while (!bFlag)
 	{
+		if (!a)
+		{
+			SDL_Color color = title.getColor();
+			if ((color.r != r) && (color.g != g) && (color.b != b))
+			{
+				if (color.r < r)
+					color.r++;
+				else
+					color.r--;
+				if (color.g < g)
+					color.g++;
+				else
+					color.g--;
+				if (color.b < b)
+					color.b++;
+				else
+					color.b--;
+			}
+			else
+			{
+				r = rand() % 256;
+				g = rand() % 256;
+				b = rand() % 256;
+			}
+			title.setColor(color.r, color.g, color.b);
+		}
+		++a %= 10;
 		draw(lpRenderer);
 		SDL_Point cur;
 		SDL_GetMouseState(&cur.x, &cur.y);

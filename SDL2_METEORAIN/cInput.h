@@ -7,7 +7,7 @@ class cInput
 {
 	cGraphObj background;
 	cTextObj title;
-	char szBuf[20];
+	char szBuf[21];
 public:
 	cInput();
 	cInput(char*);

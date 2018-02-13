@@ -2,6 +2,7 @@
 #include "cRecordsMenu.h"
 #include "cGameField.h"
 #include "cInput.h"
+#include "cMessage.h"
 #include <iostream>
 
 
@@ -11,6 +12,8 @@ cMain::cMain()
 	{
 		std::cout << "Window/Renderer creating error" << std::endl;
 	}
+	cGraphObj background("Textures/Menu.jpg");
+	background.paint(lpRenderer);
 }
 
 
@@ -20,16 +23,19 @@ cMain::~cMain()
 	SDL_DestroyRenderer(lpRenderer);
 }
 
-int cMain::main()
+int cMain::main() // Основная функция всей игры
 {
-	/// Основная функция всей игры
 	cMenu mainMenu(4, "Играть", "Рекорды", "Помощь", "Выход");
 	mainMenu.setTitle("Главное меню");
+	cMessage msg1("Игра \"Метеоритный дождь\"", MSG_GREETING);
+	cMessage msg2("Зайченко В.А. И964", MSG_GREETING);
+	msg1.show(lpRenderer, 1500);
+	msg2.show(lpRenderer, 1500);
 	bool bFlag = false;
 	while(!bFlag)
 	switch (mainMenu.choose(lpRenderer))
 	{
-	case 0:
+	case 0: // Играть
 	{
 		cMenu difficulty(4, "Легко", "Нормально", "Сложно", "Назад");
 		difficulty.setTitle("Выберите сложность");
@@ -47,25 +53,38 @@ int cMain::main()
 					pause.setTitle("Меню паузы");
 					if (pause.choose(lpRenderer))
 					{
-						cInput input("Введите имя");
-						cPlayer player(input.input(lpRenderer));
-						player.updateFromResult(result);
-						cRecords records;
-						records.load("records.bin");
-						records.add(player);
-						records.save("records.bin");
-						bGame = true;
+						cMessage msg("Вы уверены?", MSG_YESNO);
+						if (!msg.show(lpRenderer))
+						{
+							cRecords records;
+							records.load("records.bin");
+							cPlayer player;
+							player.updateFromResult(result);
+							if (records.isAddable(player))
+							{
+								cInput input("Введите имя");
+								cPlayer player(input.input(lpRenderer));
+								player.updateFromResult(result);
+								records.add(player);
+								records.save("records.bin");
+							}
+							bGame = true;
+						}
 					}
 				}
 				else
-				{
-					cInput input("Введите имя");
-					cPlayer player(input.input(lpRenderer));
-					player.updateFromResult(result);
-					cRecords records;
+				{	cRecords records;
 					records.load("records.bin");
-					records.add(player);
-					records.save("records.bin");
+					cPlayer player;
+					player.updateFromResult(result);
+					if (records.isAddable(player))
+					{
+						cInput input("Введите имя");
+						cPlayer player(input.input(lpRenderer));
+						player.updateFromResult(result);
+						records.add(player);
+						records.save("records.bin");
+					}
 					bGame = true;
 				}
 			}
@@ -79,9 +98,37 @@ int cMain::main()
 	}
 		break;
 	case 2:
+	{
+		cGraphObj help("Textures/Info.jpg");
+		help.paint(lpRenderer);
+		SDL_RenderPresent(lpRenderer);
+		SDL_Event event;
+		bool bFlag = false;
+		while (!bFlag)
+		{
+			while (SDL_PollEvent(&event))
+			{
+				switch (event.type)
+				{
+				case SDL_QUIT:
+					exit(0);
+					break;
+				case SDL_KEYDOWN:
+				case SDL_MOUSEBUTTONDOWN:
+					bFlag = true;
+				}
+			}
+		}
+	}
 		break;
 	case 3:
-		bFlag = true;
+	{	
+		cMessage msg("Вы уверены?", MSG_YESNO);
+		if (!msg.show(lpRenderer))
+		{
+			bFlag = true;
+		}
+	}
 		break;
 	default:
 		std::cout << "Menu function error" << std::endl;

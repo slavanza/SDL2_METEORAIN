@@ -2,7 +2,7 @@
 
 #include "cTextObj.h"
 
-enum msgType {MSG_OK, MSG_YESNO, MSG_INFO};
+enum msgType {MSG_OK, MSG_YESNO, MSG_INFO, MSG_GREETING};
 
 class cMessage
 {

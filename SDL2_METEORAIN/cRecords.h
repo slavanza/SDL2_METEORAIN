@@ -12,5 +12,6 @@ public:
 	cPlayer get(int);
 	void save(char*);
 	void load(char*);
+	bool isAddable(cPlayer&);
 };
 

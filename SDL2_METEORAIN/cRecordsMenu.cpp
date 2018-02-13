@@ -49,30 +49,27 @@ cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu
 		description[i].setColor(238, 221, 130);
 	}
 	description[0].setText("Имя");
-	description[0].setPos(50, 80);
+	description[0].setPos(35, 80);
 	description[1].setText("Уровень");
-	description[1].setPos(270, 80);
+	description[1].setPos(260, 80);
 	description[2].setText("Время");
 	description[2].setPos(400, 80);
 	description[3].setText("Очки");
-	description[3].setPos(550, 80);
+	description[3].setPos(530, 80);
 
 	for (int i = 0; i < 10; i++)
 	{
 		names[i].setSize(35);
 		names[i].setFont("a_AlternaSw.ttf");
 		names[i].setText(records.get(i).getName());
-		names[i].setPos(50, 240 + (i - 4) * 32);
+		names[i].setPos(35, 240 + (i - 4) * 32);
 
 		levels[i].setSize(35);
 		levels[i].setFont("a_AlternaSw.ttf");
 		char level[3] = "";
 		sprintf_s(level, "%d", records.get(i).getMaxLevel());
 		levels[i].setText(level);
-		if(strlen(level) == 2)
-			levels[i].setPos(300, 240 + (i - 4) * 32);
-		else
-			levels[i].setPos(315, 240 + (i - 4) * 32);
+		levels[i].setPos(310 - levels[i].getRect().w / 2, 240 + (i - 4) * 32);
 
 		times[i].setSize(35);
 		times[i].setFont("a_AlternaSw.ttf");
@@ -86,7 +83,7 @@ cRecordsMenu::cRecordsMenu() : cMenu(1, "Назад"), background("Textures/Menu
 		char score[10] = "";
 		sprintf_s(score, "%d", records.get(i).getTotalScore());
 		scores[i].setText(score);
-		scores[i].setPos(580, 240 + (i - 4) * 32);
+		scores[i].setPos(565 - scores[i].getRect().w / 2, 240 + (i - 4) * 32);
 	}
 	lpArr->setPos(320 - lpArr->getRect().w / 2, 430);
 }

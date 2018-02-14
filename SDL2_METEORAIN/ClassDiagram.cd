@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="cGameField" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAEAIAEAQAgAAKEAAAAAAAAAASAQAAAAAEAYAA=</HashCode>
+      <FileName>cGameField.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cGameResult" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAEEAAAAABAAAGAgAAAAAAAAACAAAAAAAEAIAA=</HashCode>
+      <FileName>cGameResult.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cGraphObj" Collapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACgAAAGAACEAAAgAAIAQIAAAAAAAAAAAAAAgAAAAABA=</HashCode>
+      <FileName>cGraphObj.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cInput" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAABAAAAAIAAAGAAAAAABAAAAAIAAAAIAA=</HashCode>
+      <FileName>cInput.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cMain" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAIAAAAAAABAAAACAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>cMain.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cMenu" Collapsed="true">
+    <Position X="1.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAKBACAAAIAAAAAAAAEAAAAAAAAgkAAIAA=</HashCode>
+      <FileName>cMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cMessage" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAIAIAAAAAAAABAAABBAAAAAAAICA=</HashCode>
+      <FileName>cMessage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cMovingGraphObj" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAgAAAAAAACAAAAAgAAJAAEQCgABAAAhAIBAAAA=</HashCode>
+      <FileName>cMovingGraphObj.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cMovingObjList" Collapsed="true">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAgAAAAACEgAAAQAAAAAAAAAAQDAAAAAACQAA=</HashCode>
+      <FileName>cMovingObjList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cObjList" Collapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAACAAEgAAAQgAAAAAAAAAADAAAAAACQAA=</HashCode>
+      <FileName>cObjList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cPlayer" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkAAQACAAAAgAoAAAAAAAAgAABAAAAAAAAAOAAAABAA=</HashCode>
+      <FileName>cPlayer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cRecords" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAICAAAAAAAAAQAAAAAABAAAAAIAAACACAAE=</HashCode>
+      <FileName>cRecords.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cRecordsMenu" Collapsed="true">
+    <Position X="1.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAIAIIAAAAAiEAAAAAAAAAASAAIIA=</HashCode>
+      <FileName>cRecordsMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cTextObj" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAgAIAAAAgAAAAACACIAACAgACAAAAAgAAYABA=</HashCode>
+      <FileName>cTextObj.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cTimer" Collapsed="true">
+    <Position X="10.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAIAAAEAAAAAgAAAAAAAAAAgAAEAAAA=</HashCode>
+      <FileName>cTimer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -16,13 +16,22 @@ bool cRecords::add(cPlayer & player)
 {
 	for (int i = 0; i < 10; i++)
 	{
-		for (int i = 0; i < 10; i++)
+		if (player.getTotalScore() >= records[i].getTotalScore())
 		{
-			if (player.getTotalScore() >= records[i].getTotalScore())
+			if (player.getTotalScore() != records[i].getTotalScore())
+			{
+				for (int j = 9; j > i; j--)
+				{
+					records[j] = records[j - 1];
+				}
+				records[i] = player;
+				return true;
+			}
+			else
 			{
 				if (player.getMaxLevel() >= records[i].getMaxLevel())
 				{
-					if (player.getTotalTime() >= records[i].getTotalTime())
+					if (player.getMaxLevel() != records[i].getMaxLevel())
 					{
 						for (int j = 9; j > i; j--)
 						{
@@ -31,8 +40,22 @@ bool cRecords::add(cPlayer & player)
 						records[i] = player;
 						return true;
 					}
+					else
+					{
+						if (player.getTotalTime() >= records[i].getTotalTime())
+						{
+							if (player.getTotalTime() != records[i].getTotalTime())
+							{
+								for (int j = 9; j > i; j--)
+								{
+									records[j] = records[j - 1];
+								}
+								records[i] = player;
+								return true;
+							}
+						}
+					}
 				}
-
 			}
 		}
 	}
